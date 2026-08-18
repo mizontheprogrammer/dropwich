@@ -41,8 +41,8 @@ export default function StoryPage() {
       <header><p className="micro-label light"><span /> THE PEOPLE BEHIND DROPWICH</p><h2 id="team-title">One team.<br />Clear roles.</h2><p>Historical company structure from the supplied 2023 class record.</p></header>
       <div className="org-chart">
         <div className="org-level org-founder"><article className="person-card founder-card"><span className="person-avatar">JM</span><div><small>Chief Executive Officer</small><h3>Jovert Ken Mendoza</h3><b>CEO</b></div></article></div>
-        <div className="org-level org-leaders" aria-label="Executive officers">{leaders.map(leader => <article className="person-card" key={leader.code}><span className="person-avatar">{initials(leader.name)}</span><div><small>{leader.role}</small><h3>{leader.name}</h3><b>{leader.code}</b></div></article>)}</div>
-        <div className="org-departments">{teams.map(team => <section className="org-department" key={team.label} aria-label={team.label}><header><span>{team.lead}</span><h3>{team.label}</h3></header><div>{team.members.map(member => <article className="member-card" key={member}><span className="person-avatar">{initials(member)}</span><h4>{member}</h4></article>)}</div></section>)}</div>
+        <div className="org-level org-leaders" aria-label="Executive officers">{leaders.map(leader => <article className={`person-card leader-${leader.code.toLowerCase()}`} key={leader.code}><span className="person-avatar">{initials(leader.name)}</span><div><small>{leader.role}</small><h3>{leader.name}</h3><b>{leader.code}</b></div></article>)}</div>
+        <div className="org-departments" aria-label="Product and operations teams reporting beneath the Chief Product Officer">{teams.map(team => <section className="org-department" key={team.label} aria-label={team.label}><header><span>{team.lead}</span><h3>{team.label}</h3></header><div>{team.members.map(member => <article className="member-card" key={member}><span className="person-avatar">{initials(member)}</span><h4>{member}</h4></article>)}</div></section>)}</div>
       </div>
     </section>
     <section className="story-credits">
