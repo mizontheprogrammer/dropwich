@@ -29,17 +29,18 @@ test("ships protected admin access, product imagery, and persistent order APIs",
     access(new URL("../public/products/plain.png", import.meta.url)),
     access(new URL("../public/products/ham.png", import.meta.url)),
     access(new URL("../public/products/hungarian.png", import.meta.url)),
-    access(new URL("../public/sauces/ketchup.webp", import.meta.url)),
-    access(new URL("../public/sauces/mayo.webp", import.meta.url)),
-    access(new URL("../public/sauces/ketchup-mayo.webp", import.meta.url)),
-    access(new URL("../public/sauces/no-sauce.webp", import.meta.url)),
-    access(new URL("../public/sauces/house-sauce.webp", import.meta.url)),
+    access(new URL("../public/sauces/ketchup-v2.webp", import.meta.url)),
+    access(new URL("../public/sauces/mayo-v2.webp", import.meta.url)),
+    access(new URL("../public/sauces/ketchup-mayo-v2.webp", import.meta.url)),
+    access(new URL("../public/sauces/no-sauce-v2.webp", import.meta.url)),
+    access(new URL("../public/sauces/house-sauce-v2.webp", import.meta.url)),
   ]);
   assert.match(header, /unoptimized/);
   assert.match(header, /\["Menu", "\/menu"\]/);
   assert.match(header, /\["Dashboard", "\/dashboard"\]/);
-  assert.match(menu, /Choose your sauce/);
-  assert.match(menu, /Special instructions/);
+  assert.match(menu, /Pick your sauce/);
+  assert.match(menu, /Add a note/);
+  assert.match(menu, /Remove/);
   assert.match(menu, /sauce-card/);
   assert.match(menu, /scrollIntoView/);
   assert.doesNotMatch(menu, /demo/i);
