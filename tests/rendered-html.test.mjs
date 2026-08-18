@@ -15,10 +15,12 @@ test("defines the public Dropwich routes", async () => {
   }
 });
 
-test("ships protected admin access, product imagery, and persistent order APIs", async () => {
-  const [header, menu, dashboard, orderApi, styles] = await Promise.all([
+test("ships protected admin access, separate product customization, and persistent order APIs", async () => {
+  const [header, catalog, customizer, productRoute, dashboard, orderApi, styles] = await Promise.all([
     readFile(new URL("../app/components/SiteHeader.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/menu/page.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/menu/ProductCustomizer.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/menu/[product]/page.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/dashboard/page.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/api/orders/route.ts", import.meta.url), "utf8"),
     readFile(new URL("../app/globals.css", import.meta.url), "utf8"),
@@ -38,12 +40,15 @@ test("ships protected admin access, product imagery, and persistent order APIs",
   assert.match(header, /unoptimized/);
   assert.match(header, /\["Menu", "\/menu"\]/);
   assert.match(header, /\["Dashboard", "\/dashboard"\]/);
-  assert.match(menu, /Pick your sauce/);
-  assert.match(menu, /Add a note/);
-  assert.match(menu, /Remove/);
-  assert.match(menu, /sauce-card/);
-  assert.match(menu, /scrollIntoView/);
-  assert.doesNotMatch(menu, /demo/i);
+  assert.match(catalog, /Pick your<br \/>Dropwich/);
+  assert.match(catalog, /href={`\/menu\/\${product\.id}`}/);
+  assert.match(customizer, /Pick your sauce/);
+  assert.match(customizer, /Add a note/);
+  assert.match(customizer, /Remove/);
+  assert.match(customizer, /sauce-card/);
+  assert.match(customizer, /Add to tray/);
+  assert.match(productRoute, /notFound/);
+  assert.doesNotMatch(`${catalog}${customizer}`, /demo/i);
   assert.match(dashboard, /user\.role !== "admin"/);
   assert.match(orderApi, /Sign in before placing an order/);
   assert.match(orderApi, /totalCentavos/);

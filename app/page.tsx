@@ -27,7 +27,7 @@ export default function Home() {
     <section className="home-menu-preview">
       <header><p className="micro-label"><span /> THE DROPWICH LINEUP</p><h2>Made to stand<br />out of the box.</h2><Link href="/menu">See every option <ArrowRight /></Link></header>
       <div>{products.map(product => <article key={product.id} className={product.tone}>
-        <Link className="product-card-link" href={`/menu?product=${product.id}#customize-order`} aria-label={`Customize ${product.label}, ₱${product.price}`}>
+        <Link className="product-card-link" href={`/menu/${product.id}`} aria-label={`Customize ${product.label}, ₱${product.price}`}>
           <h3>{product.label.split(" ").map(word => <span key={word}>{word}</span>)}</h3>
           <Image src={product.image} unoptimized alt={product.label} width={1254} height={1254} />
         </Link>
