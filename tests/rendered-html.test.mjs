@@ -6,7 +6,7 @@ test("defines the public Dropwich routes", async () => {
   const expectations = [
     ["../app/page.tsx", /Big flavor/],
     ["../app/menu/page.tsx", /ORIGINAL 2023 LINEUP/],
-    ["../app/story/page.tsx", /From class/],
+    ["../app/story/page.tsx", /Seven weeks/],
     ["../app/account/page.tsx", /YOUR DROPWICH ACCOUNT/],
     ["../app/admin/setup/page.tsx", /ONE-TIME SETUP/],
   ];
