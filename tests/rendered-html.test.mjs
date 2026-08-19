@@ -40,7 +40,7 @@ test("ships protected admin access, separate product customization, and persiste
     access(new URL("../public/sauces/ketchup-mayo-v2.webp", import.meta.url)),
     access(new URL("../public/sauces/no-sauce-v2.webp", import.meta.url)),
     access(new URL("../public/sauces/house-sauce-v2.webp", import.meta.url)),
-    access(new URL("../public/about/st-anthony-school.png", import.meta.url)),
+    access(new URL("../public/about/st-anthony-school-line.png", import.meta.url)),
   ]);
   assert.match(header, /unoptimized/);
   assert.match(header, /\["Menu", "\/menu"\]/);
@@ -78,6 +78,6 @@ test("splits About into linked pages and preserves the accessible company hierar
   assert.match(brand, /Product team/);
   assert.match(brand, /Operations team/);
   assert.match(history, /history-compact-row/);
-  assert.match(styles, /school-shutter-open/);
+  assert.match(styles, /school-line-reveal/);
   assert.match(styles, /prefers-reduced-motion/);
 });

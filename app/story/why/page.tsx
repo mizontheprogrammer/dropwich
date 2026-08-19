@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Bell, School } from "lucide-react";
+import { School } from "lucide-react";
 
 const reasons = [
   { number: "01", title: "A real audience", copy: "Sampling responses and actual orders replaced guesswork with direct customer feedback." },
@@ -17,14 +17,14 @@ export default function WhyDropwichPage() {
           <h1>A hallway<br />became a market.</h1>
           <p>The venture’s value was never its scale. It was learning how a product behaves when real classmates become the customers.</p>
         </div>
-        <div className="school-photo-stage" aria-label="St. Anthony School, where Dropwich began">
-          <div className="school-photo-frame">
-            <Image src="/about/st-anthony-school.png" unoptimized priority alt="The St. Anthony School building filled with students" width={679} height={452} />
+        <div className="school-line-stage">
+          <div className="school-line-art">
+            <Image src="/about/st-anthony-school-line.png" unoptimized priority alt="Minimal black-line architectural illustration of St. Anthony School" width={2048} height={1024} />
           </div>
-          <div className="school-photo-shutters" aria-hidden="true"><i /><i /><i /><i /></div>
-          <div className="school-origin-seal"><School aria-hidden="true" /><strong>2023</strong><span>STUDENT<br />VENTURE</span></div>
-          <div className="school-bell-mark"><Bell aria-hidden="true" /><span>BUILT BETWEEN<br />CLASS BELLS</span></div>
-          <p>ST. ANTHONY SCHOOL · SINGALONG, MANILA</p>
+          <div className="school-line-caption">
+            <div><School aria-hidden="true" /><span><b>ST. ANTHONY SCHOOL</b>Singalong, Manila</span></div>
+            <p>WHERE DROPWICH BEGAN <strong>2023</strong></p>
+          </div>
         </div>
       </section>
 
