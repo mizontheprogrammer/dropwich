@@ -6,7 +6,7 @@ test("defines the public Dropwich routes", async () => {
   const expectations = [
     ["../app/page.tsx", /Big flavor/],
     ["../app/menu/page.tsx", /ORIGINAL 2023 LINEUP/],
-    ["../app/story/page.tsx", /Seven weeks/],
+    ["../app/story/page.tsx", /A student venture/],
     ["../app/account/page.tsx", /YOUR DROPWICH ACCOUNT/],
     ["../app/admin/setup/page.tsx", /ONE-TIME SETUP/],
   ];
@@ -36,6 +36,7 @@ test("ships protected admin access, separate product customization, and persiste
     access(new URL("../public/sauces/ketchup-mayo-v2.webp", import.meta.url)),
     access(new URL("../public/sauces/no-sauce-v2.webp", import.meta.url)),
     access(new URL("../public/sauces/house-sauce-v2.webp", import.meta.url)),
+    access(new URL("../public/about/st-anthony-line-map.png", import.meta.url)),
   ]);
   assert.match(header, /unoptimized/);
   assert.match(header, /\["Menu", "\/menu"\]/);
