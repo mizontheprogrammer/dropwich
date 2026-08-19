@@ -10,5 +10,5 @@ export default async function DashboardPage() {
   await ensureSchema();
   const user = await getCurrentUser();
   if (!user || user.role !== "admin") redirect("/account");
-  return <main className="route dashboard-route"><SiteHeader active="dashboard" /><AdminDashboard adminName={user.name} /><div className="route-footer"><span>ADMINISTRATOR ACCESS</span><p>Historical finance model and incoming orders.</p><span>04 — DASHBOARD</span></div></main>;
+  return <main className="route dashboard-route"><SiteHeader active="dashboard" /><AdminDashboard adminName={user.name} /><div className="route-footer"><span>PRIVATE OPERATIONS</span><p>Live order flow, historical records, and scenario planning.</p><span>04 — DASHBOARD</span></div></main>;
 }

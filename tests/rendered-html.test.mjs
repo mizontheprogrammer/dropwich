@@ -20,12 +20,13 @@ test("defines the public Dropwich routes", async () => {
 });
 
 test("ships protected admin access, separate product customization, and persistent order APIs", async () => {
-  const [header, catalog, customizer, productRoute, dashboard, orderApi, styles] = await Promise.all([
+  const [header, catalog, customizer, productRoute, dashboard, dashboardClient, orderApi, styles] = await Promise.all([
     readFile(new URL("../app/components/SiteHeader.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/menu/page.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/menu/ProductCustomizer.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/menu/[product]/page.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/dashboard/page.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/dashboard/AdminDashboard.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/api/orders/route.ts", import.meta.url), "utf8"),
     readFile(new URL("../app/globals.css", import.meta.url), "utf8"),
   ]);
@@ -55,6 +56,11 @@ test("ships protected admin access, separate product customization, and persiste
   assert.match(productRoute, /notFound/);
   assert.doesNotMatch(`${catalog}${customizer}`, /demo/i);
   assert.match(dashboard, /user\.role !== "admin"/);
+  assert.match(dashboardClient, /Operations,/);
+  assert.match(dashboardClient, /aria-pressed/);
+  assert.match(dashboardClient, /Refresh orders/);
+  assert.match(dashboardClient, /Active orders/);
+  assert.match(dashboardClient, /DATA QUALITY NOTE/);
   assert.match(orderApi, /Sign in before placing an order/);
   assert.match(orderApi, /totalCentavos/);
   assert.match(styles, /@media \(max-width: 680px\)/);
