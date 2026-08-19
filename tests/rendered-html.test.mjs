@@ -62,10 +62,11 @@ test("ships protected admin access, separate product customization, and persiste
 });
 
 test("splits About into linked pages and preserves the accessible company hierarchy", async () => {
-  const [subnav, brand, history, styles] = await Promise.all([
+  const [subnav, brand, history, schoolIllustration, styles] = await Promise.all([
     readFile(new URL("../app/story/_components/AboutSubnav.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/story/brand/page.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/story/history/page.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/story/why/SchoolIllustration.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/story/about.css", import.meta.url), "utf8"),
   ]);
   assert.match(subnav, /\/story\/brand/);
@@ -78,6 +79,9 @@ test("splits About into linked pages and preserves the accessible company hierar
   assert.match(brand, /Product team/);
   assert.match(brand, /Operations team/);
   assert.match(history, /history-compact-row/);
+  assert.match(schoolIllustration, /IntersectionObserver/);
+  assert.match(schoolIllustration, /classList\.toggle\("is-visible"/);
   assert.match(styles, /school-line-reveal/);
+  assert.match(styles, /school-line-stage\.is-visible/);
   assert.match(styles, /prefers-reduced-motion/);
 });

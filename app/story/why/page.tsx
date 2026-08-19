@@ -1,5 +1,4 @@
-import Image from "next/image";
-import { School } from "lucide-react";
+import { SchoolIllustration } from "./SchoolIllustration";
 
 const reasons = [
   { number: "01", title: "A real audience", copy: "Sampling responses and actual orders replaced guesswork with direct customer feedback." },
@@ -17,15 +16,7 @@ export default function WhyDropwichPage() {
           <h1>A hallway<br />became a market.</h1>
           <p>The venture’s value was never its scale. It was learning how a product behaves when real classmates become the customers.</p>
         </div>
-        <div className="school-line-stage">
-          <div className="school-line-art">
-            <Image src="/about/st-anthony-school-line.png" unoptimized priority alt="Minimal black-line architectural illustration of St. Anthony School" width={2048} height={1024} />
-          </div>
-          <div className="school-line-caption">
-            <div><School aria-hidden="true" /><span><b>ST. ANTHONY SCHOOL</b>Singalong, Manila</span></div>
-            <p>WHERE DROPWICH BEGAN <strong>2023</strong></p>
-          </div>
-        </div>
+        <SchoolIllustration />
       </section>
 
       <section className="why-principles about-page-section" aria-labelledby="why-principles-title">
