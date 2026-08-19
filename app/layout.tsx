@@ -8,6 +8,7 @@ import "@fontsource/manrope/500.css";
 import "@fontsource/manrope/600.css";
 import "@fontsource/manrope/700.css";
 import "./globals.css";
+import "./story/about.css";
 
 export async function generateMetadata(): Promise<Metadata> {
   const requestHeaders = await headers();

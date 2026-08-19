@@ -6,7 +6,11 @@ test("defines the public Dropwich routes", async () => {
   const expectations = [
     ["../app/page.tsx", /Big flavor/],
     ["../app/menu/page.tsx", /ORIGINAL 2023 LINEUP/],
-    ["../app/story/page.tsx", /A student venture/],
+    ["../app/story/page.tsx", /story\/brand/],
+    ["../app/story/brand/page.tsx", /Made between/],
+    ["../app/story/why/page.tsx", /A hallway/],
+    ["../app/story/notice/page.tsx", /The project/],
+    ["../app/story/history/page.tsx", /From first order/],
     ["../app/account/page.tsx", /YOUR DROPWICH ACCOUNT/],
     ["../app/admin/setup/page.tsx", /ONE-TIME SETUP/],
   ];
@@ -36,7 +40,7 @@ test("ships protected admin access, separate product customization, and persiste
     access(new URL("../public/sauces/ketchup-mayo-v2.webp", import.meta.url)),
     access(new URL("../public/sauces/no-sauce-v2.webp", import.meta.url)),
     access(new URL("../public/sauces/house-sauce-v2.webp", import.meta.url)),
-    access(new URL("../public/about/st-anthony-line-map.png", import.meta.url)),
+    access(new URL("../public/about/st-anthony-school.png", import.meta.url)),
   ]);
   assert.match(header, /unoptimized/);
   assert.match(header, /\["Menu", "\/menu"\]/);
@@ -57,10 +61,23 @@ test("ships protected admin access, separate product customization, and persiste
   assert.match(styles, /prefers-reduced-motion/);
 });
 
-test("presents the original team as an accessible company hierarchy", async () => {
-  const story = await readFile(new URL("../app/story/page.tsx", import.meta.url), "utf8");
-  assert.match(story, /org-chart/);
-  assert.match(story, /Chief Executive Officer/);
-  assert.match(story, /Product team/);
-  assert.match(story, /Operations team/);
+test("splits About into linked pages and preserves the accessible company hierarchy", async () => {
+  const [subnav, brand, history, styles] = await Promise.all([
+    readFile(new URL("../app/story/_components/AboutSubnav.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/story/brand/page.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/story/history/page.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/story/about.css", import.meta.url), "utf8"),
+  ]);
+  assert.match(subnav, /\/story\/brand/);
+  assert.match(subnav, /\/story\/why/);
+  assert.match(subnav, /\/story\/notice/);
+  assert.match(subnav, /\/story\/history/);
+  assert.match(subnav, /aria-current/);
+  assert.match(brand, /org-chart/);
+  assert.match(brand, /Chief Executive Officer/);
+  assert.match(brand, /Product team/);
+  assert.match(brand, /Operations team/);
+  assert.match(history, /history-compact-row/);
+  assert.match(styles, /school-shutter-open/);
+  assert.match(styles, /prefers-reduced-motion/);
 });
