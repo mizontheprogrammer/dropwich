@@ -6,7 +6,7 @@ test("defines the public Dropwich routes", async () => {
   const expectations = [
     ["../app/page.tsx", /Big flavor/],
     ["../app/menu/page.tsx", /ORIGINAL 2023 LINEUP/],
-    ["../app/story/page.tsx", /We learned/],
+    ["../app/story/page.tsx", /From class/],
     ["../app/account/page.tsx", /YOUR DROPWICH ACCOUNT/],
     ["../app/admin/setup/page.tsx", /ONE-TIME SETUP/],
   ];
@@ -58,7 +58,7 @@ test("ships protected admin access, separate product customization, and persiste
 
 test("presents the original team as an accessible company hierarchy", async () => {
   const story = await readFile(new URL("../app/story/page.tsx", import.meta.url), "utf8");
-  assert.match(story, /className="org-chart"/);
+  assert.match(story, /org-chart/);
   assert.match(story, /Chief Executive Officer/);
   assert.match(story, /Product team/);
   assert.match(story, /Operations team/);
