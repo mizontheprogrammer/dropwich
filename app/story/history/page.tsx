@@ -47,10 +47,10 @@ export default function HistoryPage() {
           <p className="about-kicker light"><span>04</span> HISTORY</p>
           <h1>Four moments.<br /><em>One continuous build.</em></h1>
         </div>
+        <p>Dropwich did not move in a straight line. It launched, learned from waste, closed, and later returned as a portfolio reconstruction.</p>
         <div className="history-range" aria-label="Timeline from October 2023 to the 2026 reconstruction">
           <span>OCT 2023</span><i aria-hidden="true" /><b>→</b><i aria-hidden="true" /><span>2026 REBUILD</span>
         </div>
-        <p>Dropwich did not move in a straight line. It launched, learned from waste, closed, and later returned as a portfolio reconstruction.</p>
       </section>
 
       <section className="history-modern-timeline about-modern-section" aria-label="Dropwich history timeline">
