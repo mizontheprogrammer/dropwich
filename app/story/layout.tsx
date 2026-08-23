@@ -8,11 +8,11 @@ export default function StoryLayout({ children }: { children: ReactNode }) {
       <SiteHeader active="story" />
       <AboutSubnav />
       {children}
-      <div className="route-footer dark-footer about-route-footer">
-        <span>ST. ANTHONY SCHOOL / 2023</span>
-        <p>Historical names and records are used for portfolio documentation.</p>
-        <span>ABOUT DROPWICH</span>
-      </div>
+      <footer className="about-route-footer">
+        <div><span>DROPWICH®</span><b>STUDENT VENTURE ARCHIVE</b></div>
+        <p>Historical names, prices, roles, and records are presented as portfolio documentation of the 2023 entrepreneurship project.</p>
+        <div><span>ST. ANTHONY SCHOOL</span><b>MANILA · 2023</b></div>
+      </footer>
     </main>
   );
 }

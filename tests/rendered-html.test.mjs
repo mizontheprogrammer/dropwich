@@ -7,10 +7,10 @@ test("defines the public Dropwich routes", async () => {
     ["../app/page.tsx", /Big flavor/],
     ["../app/menu/page.tsx", /ORIGINAL 2023 LINEUP/],
     ["../app/story/page.tsx", /story\/brand/],
-    ["../app/story/brand/page.tsx", /Made between/],
-    ["../app/story/why/page.tsx", /A hallway/],
-    ["../app/story/notice/page.tsx", /The project/],
-    ["../app/story/history/page.tsx", /From first order/],
+    ["../app/story/brand/page.tsx", /brand-modern-hero/],
+    ["../app/story/why/page.tsx", /why-modern-hero/],
+    ["../app/story/notice/page.tsx", /notice-modern-hero/],
+    ["../app/story/history/page.tsx", /history-modern-hero/],
     ["../app/account/page.tsx", /YOUR DROPWICH ACCOUNT/],
     ["../app/admin/setup/page.tsx", /ONE-TIME SETUP/],
   ];
@@ -67,10 +67,12 @@ test("ships protected admin access, separate product customization, and persiste
   assert.match(styles, /prefers-reduced-motion/);
 });
 
-test("splits About into linked pages and preserves the accessible company hierarchy", async () => {
-  const [subnav, brand, history, schoolIllustration, styles] = await Promise.all([
+test("splits About into linked, modern pages and preserves the accessible company hierarchy", async () => {
+  const [subnav, brand, why, notice, history, schoolIllustration, styles] = await Promise.all([
     readFile(new URL("../app/story/_components/AboutSubnav.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/story/brand/page.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/story/why/page.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/story/notice/page.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/story/history/page.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/story/why/SchoolIllustration.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/story/about.css", import.meta.url), "utf8"),
@@ -84,10 +86,15 @@ test("splits About into linked pages and preserves the accessible company hierar
   assert.match(brand, /Chief Executive Officer/);
   assert.match(brand, /Product team/);
   assert.match(brand, /Operations team/);
-  assert.match(history, /history-compact-row/);
+  assert.match(brand, /brand-system/);
+  assert.match(why, /why-outcome-grid/);
+  assert.match(notice, /notice-primary-disclosure/);
+  assert.match(history, /history-modern-entry/);
+  assert.match(history, /history-afterword/);
   assert.match(schoolIllustration, /IntersectionObserver/);
   assert.match(schoolIllustration, /classList\.toggle\("is-visible"/);
   assert.match(styles, /school-line-reveal/);
   assert.match(styles, /school-line-stage\.is-visible/);
+  assert.match(styles, /about-subnav-links/);
   assert.match(styles, /prefers-reduced-motion/);
 });
