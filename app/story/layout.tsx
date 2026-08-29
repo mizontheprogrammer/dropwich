@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { SiteHeader } from "../components/SiteHeader";
+import { AboutMotion } from "./_components/AboutMotion";
 import { AboutSubnav } from "./_components/AboutSubnav";
 
 export default function StoryLayout({ children }: { children: ReactNode }) {
@@ -7,6 +8,7 @@ export default function StoryLayout({ children }: { children: ReactNode }) {
     <main className="route about-story about-multipage">
       <SiteHeader active="story" />
       <AboutSubnav />
+      <AboutMotion />
       {children}
       <footer className="about-route-footer">
         <div><span>DROPWICH®</span><b>STUDENT VENTURE ARCHIVE</b></div>

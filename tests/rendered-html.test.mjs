@@ -67,9 +67,10 @@ test("ships protected admin access, separate product customization, and persiste
   assert.match(styles, /prefers-reduced-motion/);
 });
 
-test("splits About into linked, modern pages and preserves the accessible company hierarchy", async () => {
-  const [subnav, brand, why, notice, history, schoolIllustration, styles] = await Promise.all([
+test("splits About into linked, animated pages and preserves the accessible company hierarchy", async () => {
+  const [subnav, aboutMotion, brand, why, notice, history, schoolIllustration, styles] = await Promise.all([
     readFile(new URL("../app/story/_components/AboutSubnav.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/story/_components/AboutMotion.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/story/brand/page.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/story/why/page.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/story/notice/page.tsx", import.meta.url), "utf8"),
@@ -82,6 +83,10 @@ test("splits About into linked, modern pages and preserves the accessible compan
   assert.match(subnav, /\/story\/notice/);
   assert.match(subnav, /\/story\/history/);
   assert.match(subnav, /aria-current/);
+  assert.match(aboutMotion, /IntersectionObserver/);
+  assert.match(aboutMotion, /requestAnimationFrame/);
+  assert.match(aboutMotion, /about-scroll-progress/);
+  assert.match(aboutMotion, /prefers-reduced-motion/);
   assert.match(brand, /org-chart/);
   assert.match(brand, /Chief Executive Officer/);
   assert.match(brand, /Product team/);
@@ -96,5 +101,7 @@ test("splits About into linked, modern pages and preserves the accessible compan
   assert.match(styles, /school-line-reveal/);
   assert.match(styles, /school-line-stage\.is-visible/);
   assert.match(styles, /about-subnav-links/);
+  assert.match(styles, /about-orbit-drift/);
+  assert.match(styles, /data-about-motion/);
   assert.match(styles, /prefers-reduced-motion/);
 });
