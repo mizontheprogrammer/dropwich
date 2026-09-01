@@ -95,23 +95,20 @@ export function ProductCustomizer({ initialProduct }: { initialProduct: ProductI
       <section className="product-config-stage">
         <nav className="product-config-nav" aria-label="Product navigation">
           <Link href="/menu"><ArrowLeft /> Back to all sandwiches</Link>
-          <span>{product.number} / {products.length.toString().padStart(2, "0")}</span>
         </nav>
         <div className="menu-showcase">
           <div className="menu-food">
-            <span className="giant-number">{product.number}</span>
             <Image src={product.image} unoptimized alt={`${product.label} in Dropwich packaging`} width={1254} height={1254} priority />
           </div>
 
           <div className="menu-details">
-            <div className="customizer-kicker"><span>{product.number}</span> BUILD YOUR DROPWICH</div>
             <span className="category">{product.label}</span>
             <h1>{product.name}</h1>
             <p>{product.description}</p>
-            <div className="menu-price"><b>{formatPeso(product.price)}</b><span>Original documented price</span></div>
+            <div className="menu-price"><b>{formatPeso(product.price)}</b><span>2023 price</span></div>
 
             <fieldset className="sauce-options">
-              <legend><span>1</span> Pick your sauce</legend>
+              <legend>Pick your sauce</legend>
               <div className="sauce-grid">
                 {sauces.map(option => (
                   <button
@@ -132,7 +129,7 @@ export function ProductCustomizer({ initialProduct }: { initialProduct: ProductI
             </fieldset>
 
             <label className="notes-field">
-              <span><b>2</b> Add a note <small>Optional</small></span>
+              <span>Add a note <small>Optional</small></span>
               <textarea
                 value={notes}
                 maxLength={160}
@@ -143,14 +140,14 @@ export function ProductCustomizer({ initialProduct }: { initialProduct: ProductI
 
             <div className="choice-summary" aria-live="polite">
               <span><Image src={selectedSauce.image} unoptimized alt="" width={640} height={640} /></span>
-              <div><small>Your build</small><strong>{product.label}</strong><p>{sauce}{notes ? " · note added" : ""}</p></div>
+              <div><strong>{product.label}</strong><p>{sauce}{notes ? " · note added" : ""}</p></div>
               <b>{formatPeso(product.price * quantity)}</b>
             </div>
 
             <div className="add-row">
               <div className="large-stepper" aria-label="Quantity">
                 <button disabled={quantity === 1} onClick={() => setQuantity(value => Math.max(1, value - 1))} aria-label="Decrease quantity"><Minus /></button>
-                <span><small>QTY</small>{quantity}</span>
+                <span><small>Quantity</small>{quantity}</span>
                 <button disabled={quantity === 10} onClick={() => setQuantity(value => Math.min(10, value + 1))} aria-label="Increase quantity"><Plus /></button>
               </div>
               <button className="add-button" onClick={addToCart}><span>Add to tray <small>{formatPeso(product.price * quantity)}</small></span><ShoppingBag /></button>
@@ -163,13 +160,11 @@ export function ProductCustomizer({ initialProduct }: { initialProduct: ProductI
         <ShoppingBag /><span>Your tray</span><b aria-live="polite">{count}</b>
       </button>
 
-      <div className="route-footer"><span>THREE ORIGINAL FLAVORS</span><p>Customize sauces and special instructions.</p><span>02 — MENU</span></div>
-
       {drawer && (
         <div className="order-overlay" onMouseDown={() => setDrawer(false)}>
           <aside onMouseDown={event => event.stopPropagation()} aria-labelledby="order-title" role="dialog" aria-modal="true">
             <header>
-              <div><small>DROPWICH ORDER</small><h2 id="order-title">Your tray</h2><p>{count ? `${count} ${count === 1 ? "item" : "items"} ready to review` : "Ready when you are"}</p></div>
+              <div><h2 id="order-title">Your tray</h2><p>{count ? `${count} ${count === 1 ? "item" : "items"} ready to review` : "Ready when you are"}</p></div>
               <button onClick={() => setDrawer(false)} aria-label="Close order"><X /></button>
             </header>
 
@@ -203,7 +198,7 @@ export function ProductCustomizer({ initialProduct }: { initialProduct: ProductI
                   })}
                 </div>
                 <footer>
-                  <div className="order-summary"><span><small>ORDER TOTAL</small>Historical student pricing</span><b>{formatPeso(total)}</b></div>
+                  <div className="order-summary"><span><small>ORDER TOTAL</small>2023 pricing</span><b>{formatPeso(total)}</b></div>
                   {status === "error" && <p className="order-error" role="alert">We couldn’t place the order. Please try again.</p>}
                   <button disabled={status === "sending"} onClick={placeOrder}>{status === "sending" ? "Placing order…" : `Place order · ${formatPeso(total)}`}</button>
                   <button className="continue-shopping" onClick={() => setDrawer(false)}>Keep browsing</button>

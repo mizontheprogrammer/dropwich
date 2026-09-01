@@ -179,9 +179,8 @@ export function AdminDashboard({ adminName }: { adminName: string }) {
     <section className="dashboard-stage">
       <header className="dashboard-command">
         <div className="dashboard-heading">
-          <p className="micro-label light"><span /> ADMIN CONTROL ROOM</p>
-          <h1>Operations,<br /><em>made visible.</em></h1>
-          <p>Track current orders, test a selling-day plan, and compare the documented economics behind the original venture.</p>
+          <h1>Operations<br /><em>dashboard.</em></h1>
+          <p>Track orders and model a selling day using documented 2023 costs.</p>
         </div>
 
         <div className="dashboard-command-tools">
@@ -190,7 +189,6 @@ export function AdminDashboard({ adminName }: { adminName: string }) {
             <div>
               <small>Administrator</small>
               <strong>{adminName}</strong>
-              <span><i aria-hidden="true" /> Private workspace</span>
             </div>
             <ShieldCheck aria-hidden="true" />
           </div>
@@ -222,7 +220,6 @@ export function AdminDashboard({ adminName }: { adminName: string }) {
         <article className="dashboard-panel orders-card">
           <header className="dashboard-panel-head">
             <div>
-              <small>LIVE OPERATIONS</small>
               <h2>Order activity</h2>
               <p>{orders.length} saved orders · {formatPeso(savedOrderValue)} recorded value</p>
             </div>
@@ -266,12 +263,12 @@ export function AdminDashboard({ adminName }: { adminName: string }) {
 
         <article className="dashboard-panel scenario-card">
           <header className="dashboard-panel-head">
-            <div><small>SCENARIO CALCULATOR</small><h2>Build a selling day</h2><p>Model one menu item using the documented 2023 costs.</p></div>
+            <div><h2>Build a selling day</h2><p>Model one menu item using the documented 2023 costs.</p></div>
             <button className="panel-icon-button" type="button" onClick={() => { setSelected("plain"); setQuantity(50); }} aria-label="Reset calculator"><RotateCcw aria-hidden="true" /></button>
           </header>
 
           <div className="scenario-product-summary">
-            <div><small>Selected menu item</small><strong>{product.label}</strong><span>{product.short}</span></div>
+            <div><small>Selected menu item</small><strong>{product.label}</strong></div>
             <div><small>Unit profit</small><strong>{formatPeso(unitProfit)}</strong><span>{(unitProfit / product.price * 100).toFixed(1)}% gross margin</span></div>
           </div>
 
@@ -307,7 +304,7 @@ export function AdminDashboard({ adminName }: { adminName: string }) {
       <div className="dashboard-insights">
         <article className="dashboard-panel economics-card">
           <header className="dashboard-panel-head">
-            <div><small>DOCUMENTED UNIT ECONOMICS</small><h2>Margin by menu item</h2><p>Selling price compared with the original costing sheets.</p></div>
+            <div><h2>Margin by menu item</h2><p>Selling price compared with the original costing sheets.</p></div>
           </header>
           <div className="economics-grid">
             {products.map((item) => {
@@ -315,7 +312,7 @@ export function AdminDashboard({ adminName }: { adminName: string }) {
               const itemMargin = itemProfit / item.price * 100;
               return (
                 <section className={`economics-item economics-${item.tone}`} key={item.id}>
-                  <div><i aria-hidden="true" /><small>{item.short}</small><h3>{item.label}</h3></div>
+                  <div><i aria-hidden="true" /><h3>{item.label}</h3></div>
                   <dl>
                     <div><dt>Selling price</dt><dd>{formatPeso(item.price)}</dd></div>
                     <div><dt>Unit cost</dt><dd>{formatPeso(item.cost)}</dd></div>
@@ -330,7 +327,7 @@ export function AdminDashboard({ adminName }: { adminName: string }) {
 
         <aside className="finance-alert">
           <AlertTriangle aria-hidden="true" />
-          <div><small>DATA QUALITY NOTE</small><h2>Read the numbers honestly.</h2><p>The source sheet says “30% markup,” but the listed selling prices produce different margins. Ketchup cost is missing, and egg quantities still need verification.</p></div>
+          <div><h2>Data limitations.</h2><p>The source sheet says “30% markup,” but the listed selling prices produce different margins. Ketchup cost is missing, and egg quantities still need verification.</p></div>
         </aside>
       </div>
     </section>

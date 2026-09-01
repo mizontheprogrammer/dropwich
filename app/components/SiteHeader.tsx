@@ -31,8 +31,7 @@ export function SiteHeader({ active }: { active: string }) {
       {open && <div className="mobile-nav" role="dialog" aria-modal="true" aria-label="Navigation menu">
         <button onClick={() => setOpen(false)} aria-label="Close navigation"><X /></button>
         <div className="mobile-logo"><Image src="/dropwich-logo.png" unoptimized alt="" width={86} height={86} /><strong>DROPWICH</strong></div>
-        <nav>{links.map(([label, href], index) => <Link key={href} href={href} onClick={() => setOpen(false)}><span>0{index + 1}</span>{label}</Link>)}</nav>
-        <p>A student venture, rebuilt as a product.</p>
+        <nav>{links.map(([label, href]) => <Link key={href} href={href} onClick={() => setOpen(false)}>{label}</Link>)}</nav>
       </div>}
     </>
   );

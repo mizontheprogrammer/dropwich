@@ -14,16 +14,16 @@ const teams = [
 ];
 
 const principles = [
-  { number: "01", icon: Sandwich, title: "Familiar food, ownable character", copy: "Egg, cheese, toasted bread, and recognizable add-ons became a compact menu with a distinct point of view." },
-  { number: "02", icon: ClipboardCheck, title: "Evidence before assumption", copy: "Sampling, costing, sales, and waste records turned each decision into something the team could explain." },
-  { number: "03", icon: Users, title: "A company built by students", copy: "Eleven classmates divided product, finance, marketing, and operating work into clear responsibilities." },
+  { icon: Sandwich, title: "Familiar food, ownable character", copy: "Egg, cheese, toasted bread, and recognizable add-ons became a compact menu with a distinct point of view." },
+  { icon: ClipboardCheck, title: "Evidence before assumption", copy: "Sampling, costing, sales, and waste records turned each decision into something the team could explain." },
+  { icon: Users, title: "A company built by students", copy: "Eleven classmates divided product, finance, marketing, and operating work into clear responsibilities." },
 ];
 
 const colors = [
-  { name: "Egg yolk", value: "#FFC950", className: "yolk" },
-  { name: "Drop orange", value: "#FF4B16", className: "orange" },
-  { name: "Toast ink", value: "#17110E", className: "ink" },
-  { name: "Wrapper cream", value: "#FFF8E8", className: "cream" },
+  { name: "Egg yolk", className: "yolk" },
+  { name: "Drop orange", className: "orange" },
+  { name: "Toast ink", className: "ink" },
+  { name: "Wrapper cream", className: "cream" },
 ];
 
 const initials = (name: string) => name.split(" ").map((part) => part[0]).slice(0, 2).join("");
@@ -33,44 +33,34 @@ export default function BrandPage() {
     <>
       <section className="brand-modern-hero">
         <div className="brand-modern-copy">
-          <p className="about-kicker"><span>01</span> BRAND</p>
           <h1>Built to be<br /><em>remembered.</em></h1>
           <p>Dropwich gave a familiar egg sandwich a student-made identity—warm, direct, affordable, and designed for the pace of a school day.</p>
-          <div className="brand-hero-facts" aria-label="Dropwich brand facts">
-            <span><b>3</b> original flavors</span>
-            <span><b>11</b> student operators</span>
-            <span><b>2023</b> school-born</span>
-          </div>
         </div>
 
         <div className="brand-modern-art">
-          <span className="brand-art-label">FROM THE SCHOOL HALLWAY</span>
           <div className="brand-art-orbit" aria-hidden="true"><i /><i /><i /></div>
           <Image src="/dropwich-logo.png" unoptimized priority alt="Dropwich sandwich logo" width={520} height={520} />
           <div className="brand-art-word" aria-hidden="true"><span>DROP</span><span>WICH</span></div>
-          <small>DROP · EAT · REPEAT</small>
         </div>
       </section>
 
       <section className="about-ledger" aria-label="Original venture figures">
-        <article><span>01</span><strong>₱89</strong><small>ORIGINAL STARTING PRICE</small></article>
-        <article><span>02</span><strong>60</strong><small>ORDER CAPACITY</small></article>
-        <article><span>03</span><strong>Sold out</strong><small>OPENING-DAY RESULT</small></article>
-        <article><span>04</span><strong>₱7,515</strong><small>WEEK 1 REVENUE</small></article>
+        <article><strong>₱89</strong><span className="ledger-label">Starting price</span></article>
+        <article><strong>60</strong><span className="ledger-label">Order capacity</span></article>
+        <article><strong>Sold out</strong><span className="ledger-label">Opening day</span></article>
+        <article><strong>₱7,515</strong><span className="ledger-label">Week 1 revenue</span></article>
       </section>
 
       <section className="brand-principles-modern about-modern-section" aria-labelledby="principles-title">
-        <header className="about-section-heading">
-          <p className="about-kicker"><span>01A</span> BRAND PRINCIPLES</p>
+        <header className="about-section-heading single">
           <h2 id="principles-title">Simple enough to understand.<br /><em>Specific enough to own.</em></h2>
-          <p>The brand works because the product, records, and team structure all tell the same story: small scale, serious intent.</p>
         </header>
         <div className="brand-principle-grid">
           {principles.map((principle) => {
             const Icon = principle.icon;
             return (
-              <article key={principle.number}>
-                <div><span>{principle.number}</span><Icon aria-hidden="true" /></div>
+              <article key={principle.title}>
+                <div><Icon aria-hidden="true" /></div>
                 <h3>{principle.title}</h3>
                 <p>{principle.copy}</p>
               </article>
@@ -81,38 +71,33 @@ export default function BrandPage() {
 
       <section className="brand-system about-modern-section" aria-labelledby="identity-title">
         <header className="about-section-heading light">
-          <p className="about-kicker"><span>01B</span> IDENTITY SYSTEM</p>
           <h2 id="identity-title">Warm enough for food.<br /><em>Sharp enough for business.</em></h2>
-          <p>The original bread mark anchors a flexible visual system built from bold type, wrapper lines, and four high-contrast colors.</p>
+          <p>The bread mark, bold type, and four colors form the visual system.</p>
         </header>
 
         <div className="brand-system-grid">
           <article className="brand-logo-tile">
-            <span>PRIMARY MARK / 01</span>
+            <h3>Logo</h3>
             <Image src="/dropwich-logo.png" unoptimized alt="Dropwich primary sandwich mark" width={420} height={420} />
-            <b>THE SANDWICH IS THE SYMBOL.</b>
           </article>
           <article className="brand-type-tile">
-            <span>VOICE / 02</span>
-            <p>DISPLAY</p>
+            <h3>Typography</h3>
+            <span>Display · Fraunces</span>
             <strong>Big flavor.<br />Small beginnings.</strong>
-            <p>UTILITY</p>
-            <b>MANROPE / CLEAR, MODERN, DIRECT</b>
+            <span>Utility · Manrope</span>
           </article>
           <article className="brand-palette-tile">
-            <span>PALETTE / 03</span>
+            <h3>Colors</h3>
             <div>
-              {colors.map((color) => <section className={color.className} key={color.name}><i /><b>{color.name}</b><small>{color.value}</small></section>)}
+              {colors.map((color) => <section className={color.className} key={color.name}><i /><b>{color.name}</b></section>)}
             </div>
           </article>
         </div>
       </section>
 
       <section className="brand-team-modern about-modern-section" aria-labelledby="team-title">
-        <header className="about-section-heading">
-          <p className="about-kicker"><span>01C</span> THE ORIGINAL COMPANY</p>
+        <header className="about-section-heading single">
           <h2 id="team-title">Eleven students.<br /><em>Clear responsibilities.</em></h2>
-          <p>The hierarchy records how the original venture divided ownership across executive, product, finance, marketing, and operating work.</p>
         </header>
 
         <div className="org-chart about-org-chart">

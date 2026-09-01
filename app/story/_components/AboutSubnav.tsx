@@ -15,13 +15,11 @@ export function AboutSubnav() {
 
   return (
     <nav className="about-subnav" aria-label="About Dropwich pages">
-      <div className="about-subnav-title" aria-hidden="true"><span>ABOUT</span><b>DROPWICH</b></div>
       <div className="about-subnav-links">
-        {sections.map((section, index) => {
+        {sections.map((section) => {
           const active = pathname === section.href;
           return (
             <Link key={section.href} href={section.href} aria-current={active ? "page" : undefined}>
-              <span>{String(index + 1).padStart(2, "0")}</span>
               <b>{section.label}</b>
             </Link>
           );

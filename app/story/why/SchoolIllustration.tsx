@@ -41,9 +41,8 @@ export function SchoolIllustration() {
       <div className="school-line-caption">
         <div>
           <School aria-hidden="true" />
-          <span><b>ST. ANTHONY SCHOOL</b>Singalong, Manila</span>
+          <p><strong>St. Anthony School</strong><span>Singalong, Manila · 2023</span></p>
         </div>
-        <p>WHERE DROPWICH BEGAN <strong>2023</strong></p>
       </div>
     </div>
   );
