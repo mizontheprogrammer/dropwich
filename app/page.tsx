@@ -2,6 +2,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowDownRight, ArrowRight } from "lucide-react";
 import { SiteHeader } from "./components/SiteHeader";
+import { HomeExperience } from "./components/HomeExperience";
+import { ProductCardArt } from "./components/ProductCardArt";
 import { products } from "./data";
 
 export default function Home() {
@@ -26,6 +28,7 @@ export default function Home() {
       <header><h2>Made to stand<br />out of the box.</h2><Link href="/menu">See every option <ArrowRight /></Link></header>
       <div>{products.map(product => <article key={product.id} className={product.tone}>
         <Link className="product-card-link" href={`/menu/${product.id}`} aria-label={`Customize ${product.label}, ₱${product.price}`}>
+          <ProductCardArt />
           <h3>{product.label.split(" ").map(word => <span key={word}>{word}</span>)}</h3>
           <Image src={product.image} unoptimized alt={product.label} width={1254} height={1254} />
         </Link>
@@ -42,6 +45,7 @@ export default function Home() {
         <Link className="pill-button dark" href="/menu">Build your order <ArrowRight /></Link>
       </div>
     </section>
+    <HomeExperience />
     <section className="home-belief">
       <div><span>Eat</span><strong>better.</strong></div>
       <p>Shaped by customer feedback and improved through real selling.</p>

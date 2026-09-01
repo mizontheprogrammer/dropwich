@@ -19,6 +19,37 @@ test("defines the public Dropwich routes", async () => {
   }
 });
 
+test("builds the interactive Dropwich homepage experience from reusable layers", async () => {
+  const [home, experience, productArt, menu, brand, styles] = await Promise.all([
+    readFile(new URL("../app/page.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/components/HomeExperience.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/components/ProductCardArt.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/menu/page.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/story/brand/page.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/components/HomeExperience.module.css", import.meta.url), "utf8"),
+  ]);
+  assert.match(home, /<HomeExperience \/>/);
+  assert.match(experience, /Every egg has/);
+  assert.match(experience, /Made to make/);
+  assert.match(experience, /Array\(96\)/);
+  assert.match(experience, /requestAnimationFrame/);
+  assert.match(experience, /onPointerDown/);
+  assert.match(experience, /aria-pressed/);
+  assert.doesNotMatch(experience, /golden egg/i);
+  assert.match(home, /ProductCardArt/);
+  assert.match(menu, /ProductCardArt/);
+  assert.match(productArt, /product-card-art/);
+  assert.match(brand, /<EggdropPattern story \/>/);
+  assert.match(brand, /<DropwichGallery story \/>/);
+  assert.match(styles, /prefers-reduced-motion/);
+  await Promise.all([
+    access(new URL("../public/experience/city-billboard.webp", import.meta.url)),
+    access(new URL("../public/experience/ingredient-studio.webp", import.meta.url)),
+    access(new URL("../public/experience/picnic-table.webp", import.meta.url)),
+    access(new URL("../public/experience/collectible-lineup.webp", import.meta.url)),
+  ]);
+});
+
 test("ships protected admin access, separate product customization, and persistent order APIs", async () => {
   const [header, footer, catalog, customizer, productRoute, dashboard, dashboardClient, orderApi, styles, retailStyles, layout] = await Promise.all([
     readFile(new URL("../app/components/SiteHeader.tsx", import.meta.url), "utf8"),
@@ -105,7 +136,7 @@ test("splits About into linked, animated pages and preserves the accessible comp
   assert.match(subnav, /aria-current/);
   assert.match(aboutMotion, /IntersectionObserver/);
   assert.match(aboutMotion, /requestAnimationFrame/);
-  assert.match(aboutMotion, /about-scroll-progress/);
+  assert.doesNotMatch(aboutMotion, /about-scroll-progress/);
   assert.match(aboutMotion, /prefers-reduced-motion/);
   assert.match(brand, /org-chart/);
   assert.match(brand, /Chief Executive Officer/);

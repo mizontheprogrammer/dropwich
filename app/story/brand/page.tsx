@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { ClipboardCheck, Sandwich, Users } from "lucide-react";
+import { DropwichGallery, EggdropPattern } from "../../components/HomeExperience";
 
 const leaders = [
   { role: "Chief Finance Officer", name: "Misha Andrei Recente", code: "CFO" },
@@ -94,6 +95,9 @@ export default function BrandPage() {
           </article>
         </div>
       </section>
+
+      <EggdropPattern story />
+      <DropwichGallery story />
 
       <section className="brand-team-modern about-modern-section" aria-labelledby="team-title">
         <header className="about-section-heading single">

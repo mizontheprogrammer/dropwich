@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Search } from "lucide-react";
 import { SiteHeader } from "../components/SiteHeader";
+import { ProductCardArt } from "../components/ProductCardArt";
 import { formatPeso, products } from "../data";
 
 export default async function MenuPage({ searchParams }: { searchParams?: Promise<{ q?: string }> }) {
@@ -30,9 +31,10 @@ export default async function MenuPage({ searchParams }: { searchParams?: Promis
               key={product.id}
               aria-label={`Customize ${product.label}, ${formatPeso(product.price)}`}
             >
+              <ProductCardArt />
               <h2>{product.label.split(" ").map(word => <span key={word}>{word}</span>)}</h2>
               <figure>
-                <Image src={product.image} unoptimized alt={`${product.label} in Dropwich packaging`} width={1254} height={1254} />
+                <Image src={product.image} unoptimized loading="eager" alt={`${product.label} in Dropwich packaging`} width={1254} height={1254} />
               </figure>
               <footer>
                 <div><b>{formatPeso(product.price)}</b></div>

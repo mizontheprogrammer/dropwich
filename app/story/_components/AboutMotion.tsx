@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 
 type MotionKind = "hero" | "rise" | "scale" | "tilt";
 
@@ -18,12 +18,10 @@ const staggerGroups = [
 
 export function AboutMotion() {
   const pathname = usePathname();
-  const progressRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
     const root = document.querySelector<HTMLElement>(".about-multipage");
-    const progress = progressRef.current;
-    if (!root || !progress) return;
+    if (!root) return;
 
     const targets = new Set<HTMLElement>();
     const immediateTargets = new Set<HTMLElement>();
@@ -72,7 +70,6 @@ export function AboutMotion() {
     root.classList.add("about-motion-enabled");
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       targets.forEach(reveal);
-      progress.style.transform = "scaleX(1)";
       return resetTargets;
     }
 
@@ -94,31 +91,12 @@ export function AboutMotion() {
     }
 
     const entranceFrame = window.requestAnimationFrame(() => immediateTargets.forEach(reveal));
-    let progressFrame = 0;
-    const updateProgress = () => {
-      progressFrame = 0;
-      const maximum = document.documentElement.scrollHeight - window.innerHeight;
-      const value = maximum > 0 ? Math.min(Math.max(window.scrollY / maximum, 0), 1) : 1;
-      progress.style.transform = `scaleX(${value})`;
-    };
-    const requestProgressUpdate = () => {
-      if (progressFrame) return;
-      progressFrame = window.requestAnimationFrame(updateProgress);
-    };
-
-    updateProgress();
-    window.addEventListener("scroll", requestProgressUpdate, { passive: true });
-    window.addEventListener("resize", requestProgressUpdate);
-
     return () => {
       observer?.disconnect();
       window.cancelAnimationFrame(entranceFrame);
-      if (progressFrame) window.cancelAnimationFrame(progressFrame);
-      window.removeEventListener("scroll", requestProgressUpdate);
-      window.removeEventListener("resize", requestProgressUpdate);
       resetTargets();
     };
   }, [pathname]);
 
-  return <div className="about-scroll-progress" aria-hidden="true"><span ref={progressRef} /></div>;
+  return null;
 }
