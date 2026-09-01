@@ -19,7 +19,7 @@ test("defines the public Dropwich routes", async () => {
   }
 });
 
-test("builds the interactive Dropwich homepage experience from reusable layers", async () => {
+test("keeps the animated Dropwich experience in Story and the product art on Home", async () => {
   const [home, experience, productArt, menu, brand, styles] = await Promise.all([
     readFile(new URL("../app/page.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/components/HomeExperience.tsx", import.meta.url), "utf8"),
@@ -28,13 +28,14 @@ test("builds the interactive Dropwich homepage experience from reusable layers",
     readFile(new URL("../app/story/brand/page.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/components/HomeExperience.module.css", import.meta.url), "utf8"),
   ]);
-  assert.match(home, /<HomeExperience \/>/);
-  assert.match(experience, /Every egg has/);
-  assert.match(experience, /Made to make/);
+  assert.doesNotMatch(home, /HomeExperience/);
+  assert.match(experience, /One simple egg/);
+  assert.match(experience, /From a hallway/);
   assert.match(experience, /Array\(96\)/);
   assert.match(experience, /requestAnimationFrame/);
   assert.match(experience, /onPointerDown/);
-  assert.match(experience, /aria-pressed/);
+  assert.match(experience, /IntersectionObserver/);
+  assert.doesNotMatch(experience, /Pause pattern|Pause gallery|motionControl/);
   assert.doesNotMatch(experience, /golden egg/i);
   assert.match(home, /ProductCardArt/);
   assert.match(menu, /ProductCardArt/);

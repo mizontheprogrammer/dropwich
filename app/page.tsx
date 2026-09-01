@@ -2,7 +2,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowDownRight, ArrowRight } from "lucide-react";
 import { SiteHeader } from "./components/SiteHeader";
-import { HomeExperience } from "./components/HomeExperience";
 import { ProductCardArt } from "./components/ProductCardArt";
 import { products } from "./data";
 
@@ -45,7 +44,6 @@ export default function Home() {
         <Link className="pill-button dark" href="/menu">Build your order <ArrowRight /></Link>
       </div>
     </section>
-    <HomeExperience />
     <section className="home-belief">
       <div><span>Eat</span><strong>better.</strong></div>
       <p>Shaped by customer feedback and improved through real selling.</p>
