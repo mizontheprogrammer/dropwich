@@ -20,8 +20,9 @@ test("defines the public Dropwich routes", async () => {
 });
 
 test("ships protected admin access, separate product customization, and persistent order APIs", async () => {
-  const [header, catalog, customizer, productRoute, dashboard, dashboardClient, orderApi, styles, retailStyles, layout] = await Promise.all([
+  const [header, footer, catalog, customizer, productRoute, dashboard, dashboardClient, orderApi, styles, retailStyles, layout] = await Promise.all([
     readFile(new URL("../app/components/SiteHeader.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/components/SiteFooter.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/menu/page.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/menu/ProductCustomizer.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/menu/[product]/page.tsx", import.meta.url), "utf8"),
@@ -48,8 +49,15 @@ test("ships protected admin access, separate product customization, and persiste
   assert.match(header, /unoptimized/);
   assert.match(header, /\["Menu", "\/menu"\]/);
   assert.match(header, /\["Dashboard", "\/dashboard"\]/);
+  assert.match(header, /Search the Dropwich menu/);
+  assert.match(header, /role="search"/);
+  assert.match(header, /aria-current/);
+  assert.match(footer, /Build your order/);
+  assert.match(footer, /Original student venture/);
   assert.match(catalog, /Pick your<br \/>Dropwich/);
   assert.match(catalog, /href={`\/menu\/\${product\.id}`}/);
+  assert.match(catalog, /filteredProducts/);
+  assert.match(catalog, /No sandwiches found/);
   assert.match(customizer, /Pick your sauce/);
   assert.match(customizer, /Add a note/);
   assert.match(customizer, /Remove/);
@@ -68,8 +76,12 @@ test("ships protected admin access, separate product customization, and persiste
   assert.match(styles, /@media \(max-width: 680px\)/);
   assert.match(styles, /prefers-reduced-motion/);
   assert.match(retailStyles, /--retail-orange/);
+  assert.match(retailStyles, /--content-width:1360px/);
+  assert.match(retailStyles, /\.site-footer/);
+  assert.match(retailStyles, /\.search-overlay/);
   assert.match(retailStyles, /\.topbar/);
   assert.match(layout, /import "\.\/retail\.css"/);
+  assert.match(layout, /<SiteFooter \/>/);
   assert.doesNotMatch(catalog, /ORIGINAL 2023 LINEUP/);
 });
 

@@ -10,9 +10,6 @@ export default function StoryLayout({ children }: { children: ReactNode }) {
       <AboutSubnav />
       <AboutMotion />
       {children}
-      <footer className="about-route-footer">
-        <p>Dropwich was a 2023 student venture. This website is a 2026 portfolio reconstruction.</p>
-      </footer>
     </main>
   );
 }
