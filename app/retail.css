@@ -216,8 +216,11 @@ button:disabled{cursor:not-allowed;opacity:.52}
 .account-loading{min-height:340px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;color:var(--color-muted)}
 .account-loading span{width:42px;height:42px;border:3px solid var(--color-border);border-top-color:var(--color-primary);border-radius:50%;animation:dashboard-spin .8s linear infinite}
 .account-loading p{margin:0;font-size:14px}
+.about-subnav{display:flex;align-items:stretch;justify-content:center}
+.about-subnav-links{width:720px;max-width:100%;margin:0;flex:0 1 720px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}
 @media (max-width:760px){
-  .about-subnav-links{width:100%;max-width:720px;margin:0 auto;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));justify-content:center;overflow:visible}
+  .about-subnav{display:flex}
+  .about-subnav-links{width:100%;max-width:720px;margin:0;flex:1 1 100%;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));justify-content:center;overflow:visible}
   .about-subnav a{min-width:0;padding-inline:8px;text-align:center}
   .about-subnav a b{line-height:1.2}
 }

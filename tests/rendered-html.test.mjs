@@ -81,6 +81,7 @@ test("ships protected admin access, separate product customization, and persiste
   assert.match(retailStyles, /\.search-overlay/);
   assert.match(retailStyles, /\.topbar/);
   assert.match(retailStyles, /grid-template-columns:repeat\(4,minmax\(0,1fr\)\)/);
+  assert.match(retailStyles, /\.about-subnav\{display:flex;align-items:stretch;justify-content:center\}/);
   assert.match(layout, /import "\.\/retail\.css"/);
   assert.match(layout, /<SiteFooter \/>/);
   assert.doesNotMatch(catalog, /ORIGINAL 2023 LINEUP/);
