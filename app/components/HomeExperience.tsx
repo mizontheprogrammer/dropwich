@@ -19,14 +19,13 @@ function EggdropMascot({ mood }: { mood: typeof moods[number] }) {
 }
 
 export function EggdropPattern({ story = false }: { story?: boolean }) {
-  const [hoverPaused, setHoverPaused] = useState(false);
   return <section className={`${styles.patternSection} ${story ? styles.storyPattern : ""}`} aria-labelledby={story ? "story-eggdrop-title" : "eggdrop-title"}>
     <div className={styles.sectionHeading}>
       <div><span>{story ? "A living brand mark" : "Meet the mood"}</span><h2 id={story ? "story-eggdrop-title" : "eggdrop-title"}>{story ? <>One simple egg.<br />Plenty of character.</> : <>Every egg has<br />a personality.</>}</h2></div>
       <div><p>{story ? "The Eggdrop pattern turns one familiar ingredient into a playful, repeatable part of the Dropwich identity." : "A close-knit cast of original Eggdrops brings the menu to life—quietly moving, blinking, and reacting as one."}</p><Link href={story ? "/story/why" : "/menu"}>{story ? "Why Dropwich" : "Explore the menu"} <ArrowRight /></Link></div>
     </div>
-    <div className={styles.patternFrame} onMouseEnter={() => setHoverPaused(true)} onMouseLeave={() => setHoverPaused(false)}>
-      <div className={`${styles.patternTrack} ${hoverPaused ? styles.paused : ""}`} aria-hidden="true">
+    <div className={styles.patternFrame}>
+      <div className={styles.patternTrack} aria-hidden="true">
         {[...Array(96)].map((_, index) => <EggdropMascot key={index} mood={moods[index % moods.length]} />)}
       </div>
     </div>
@@ -76,9 +75,9 @@ export function DropwichGallery({ story = false }: { story?: boolean }) {
   return <section ref={sectionRef} className={`${styles.gallerySection} ${story ? styles.storyGallery : ""}`} aria-labelledby={story ? "story-gallery-title" : "gallery-title"}>
     <div className={styles.sectionHeading}>
       <div><span>{story ? "Dropwich in motion" : "Dropwich scenes"}</span><h2 id={story ? "story-gallery-title" : "gallery-title"}>{story ? <>From a hallway<br />to a whole world.</> : <>Made to make<br />your day better.</>}</h2></div>
-      <div><p>{story ? "The original menu reimagined as a growing visual world—still rooted in the sandwiches, colors, and packaging from 2023." : "Fresh favorites with the warmth and personality that shaped the original student venture."}</p><span className={styles.dragHint}>Moves slowly as you browse · drag or swipe anytime</span></div>
+      <div><p>{story ? "The original menu reimagined as a growing visual world—still rooted in the sandwiches, colors, and packaging from 2023." : "Fresh favorites with the warmth and personality that shaped the original student venture."}</p></div>
     </div>
-    <div className={styles.galleryViewport} ref={galleryRef} onPointerDown={startDrag} onPointerMove={moveDrag} onPointerUp={endDrag} onPointerCancel={endDrag} onMouseEnter={() => setInteractionPaused(true)} onMouseLeave={() => { if (!drag.current.active) setInteractionPaused(false); }}>
+    <div className={styles.galleryViewport} ref={galleryRef} onPointerDown={startDrag} onPointerMove={moveDrag} onPointerUp={endDrag} onPointerCancel={endDrag}>
       <div className={styles.galleryRail}>{[...galleryScenes, ...galleryScenes].map((scene, index) => <article className={`${styles.galleryCard} ${styles[scene.shape]}`} key={`${scene.image}-${index}`}><Image src={scene.image} alt={index < galleryScenes.length ? scene.title : ""} width={1536} height={1536} loading="lazy" sizes="(max-width: 760px) 78vw, 38vw" /></article>)}</div>
     </div>
   </section>;

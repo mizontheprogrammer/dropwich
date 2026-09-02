@@ -36,6 +36,7 @@ test("keeps the animated Dropwich experience in Story and the product art on Hom
   assert.match(experience, /onPointerDown/);
   assert.match(experience, /IntersectionObserver/);
   assert.doesNotMatch(experience, /Pause pattern|Pause gallery|motionControl/);
+  assert.doesNotMatch(experience, /Moves slowly as you browse|onMouseEnter/);
   assert.doesNotMatch(experience, /golden egg/i);
   assert.match(home, /ProductCardArt/);
   assert.match(menu, /ProductCardArt/);
