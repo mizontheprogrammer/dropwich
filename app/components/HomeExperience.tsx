@@ -51,9 +51,15 @@ export function DropwichGallery({ story = false }: { story?: boolean }) {
     const rail = galleryRef.current;
     if (!rail || !inView || interactionPaused || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     let frame = 0;
-    const move = () => {
-      rail.scrollLeft += 0.32;
-      if (rail.scrollLeft >= rail.scrollWidth / 2) rail.scrollLeft -= rail.scrollWidth / 2;
+    let position = rail.scrollLeft;
+    let previousTime = performance.now();
+    const move = (currentTime: number) => {
+      const elapsed = Math.min(currentTime - previousTime, 50);
+      previousTime = currentTime;
+      position += elapsed * 0.028;
+      const loopWidth = rail.scrollWidth / 2;
+      if (position >= loopWidth) position -= loopWidth;
+      rail.scrollLeft = position;
       frame = requestAnimationFrame(move);
     };
     frame = requestAnimationFrame(move);

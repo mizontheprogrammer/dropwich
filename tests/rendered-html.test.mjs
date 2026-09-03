@@ -33,6 +33,7 @@ test("keeps the animated Dropwich experience in Story and the product art on Hom
   assert.match(experience, /From a hallway/);
   assert.match(experience, /Array\(96\)/);
   assert.match(experience, /requestAnimationFrame/);
+  assert.match(experience, /position \+= elapsed \* 0\.028/);
   assert.match(experience, /onPointerDown/);
   assert.match(experience, /IntersectionObserver/);
   assert.doesNotMatch(experience, /Pause pattern|Pause gallery|motionControl/);
