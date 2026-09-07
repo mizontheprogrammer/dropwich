@@ -51,6 +51,9 @@ test("keeps the automatic Dropwich gallery on Home and the egg pattern in Story"
   assert.match(experience, /position \+= elapsed \* 0\.028/);
   assert.match(experience, /firstCard\.offsetLeft \+ firstCard\.offsetWidth \* 0\.28/);
   assert.match(experience, /onPointerDown/);
+  assert.match(experience, /onKeyDown={browseWithKeyboard}/);
+  assert.match(experience, /tabIndex={0}/);
+  assert.match(experience, /Use the left and right arrow keys/);
   assert.match(experience, /IntersectionObserver/);
   assert.doesNotMatch(experience, /Pause pattern|Pause gallery|motionControl/);
   assert.doesNotMatch(experience, /Moves slowly as you browse|onMouseEnter/);

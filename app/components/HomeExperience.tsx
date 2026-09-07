@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { PointerEvent, useEffect, useLayoutEffect, useRef, useState } from "react";
+import { KeyboardEvent, PointerEvent, useEffect, useLayoutEffect, useRef, useState } from "react";
 import styles from "./HomeExperience.module.css";
 
 const moods = ["happy", "sleepy", "excited", "cheeky"] as const;
@@ -85,13 +85,20 @@ export function DropwichGallery({ story = false }: { story?: boolean }) {
     if (drag.current.active && galleryRef.current) galleryRef.current.scrollLeft = drag.current.startScroll - (event.clientX - drag.current.startX);
   };
   const endDrag = () => { drag.current.active = false; setInteractionPaused(false); };
+  const browseWithKeyboard = (event: KeyboardEvent<HTMLDivElement>) => {
+    if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
+    event.preventDefault();
+    setInteractionPaused(true);
+    const distance = galleryRef.current?.clientWidth ?? 0;
+    galleryRef.current?.scrollBy({ left: event.key === "ArrowLeft" ? -distance * 0.72 : distance * 0.72, behavior: "smooth" });
+  };
 
   return <section ref={sectionRef} className={`${styles.gallerySection} ${story ? styles.storyGallery : ""}`} aria-labelledby={story ? "story-gallery-title" : "gallery-title"}>
     <div className={styles.sectionHeading}>
       <div><span>{story ? "Dropwich in motion" : "Dropwich scenes"}</span><h2 id={story ? "story-gallery-title" : "gallery-title"}>{story ? <>From a hallway<br />to a whole world.</> : <>Made to make<br />your day better.</>}</h2></div>
       <div><p>{story ? "The original menu reimagined as a growing visual world—still rooted in the sandwiches, colors, and packaging from 2023." : "Fresh favorites with the warmth and personality that shaped the original student venture."}</p></div>
     </div>
-    <div className={styles.galleryViewport} ref={galleryRef} onPointerDown={startDrag} onPointerMove={moveDrag} onPointerUp={endDrag} onPointerCancel={endDrag}>
+    <div className={styles.galleryViewport} ref={galleryRef} tabIndex={0} role="region" aria-label="Dropwich photo gallery. Use the left and right arrow keys to browse." onKeyDown={browseWithKeyboard} onFocus={() => setInteractionPaused(true)} onBlur={() => setInteractionPaused(false)} onPointerDown={startDrag} onPointerMove={moveDrag} onPointerUp={endDrag} onPointerCancel={endDrag}>
       <div className={styles.galleryRail}>{[...galleryScenes, ...galleryScenes].map((scene, index) => <article className={`${styles.galleryCard} ${styles[scene.shape]}`} key={`${scene.image}-${index}`}><Image src={scene.image} alt={index < galleryScenes.length ? scene.title : ""} width={1536} height={1536} loading="lazy" sizes="(max-width: 760px) 78vw, 38vw" /></article>)}</div>
     </div>
   </section>;
