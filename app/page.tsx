@@ -7,7 +7,7 @@ import { products } from "./data";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-cream text-ink font-manrope selection:bg-yellow/40">
+    <main id="main-content" className="min-h-screen bg-cream text-ink font-manrope selection:bg-yellow/40">
       <SiteHeader active="home" />
 
       {/* Hero Section */}

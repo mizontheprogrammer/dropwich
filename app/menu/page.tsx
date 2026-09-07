@@ -11,7 +11,7 @@ export default async function MenuPage({ searchParams }: { searchParams?: Promis
     : products;
 
   return (
-    <main className="min-h-screen bg-paper text-ink font-manrope selection:bg-yellow/40">
+    <main id="main-content" className="min-h-screen bg-paper text-ink font-manrope selection:bg-yellow/40">
       <SiteHeader active="menu" />
 
       <section className="px-6 py-12 md:px-12 lg:px-24 md:py-24 max-w-[1600px] mx-auto">

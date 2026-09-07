@@ -19,6 +19,22 @@ test("defines the public Dropwich routes", async () => {
   }
 });
 
+test("provides a skip-link target on every page shell", async () => {
+  const shells = [
+    "../app/page.tsx",
+    "../app/menu/page.tsx",
+    "../app/menu/ProductCustomizer.tsx",
+    "../app/account/page.tsx",
+    "../app/admin/setup/page.tsx",
+    "../app/dashboard/page.tsx",
+    "../app/story/layout.tsx",
+  ];
+
+  for (const file of shells) {
+    assert.match(await readFile(new URL(file, import.meta.url), "utf8"), /<main id="main-content"/);
+  }
+});
+
 test("keeps the automatic Dropwich gallery on Home and the egg pattern in Story", async () => {
   const [home, experience, menu, brand, styles] = await Promise.all([
     readFile(new URL("../app/page.tsx", import.meta.url), "utf8"),
@@ -116,6 +132,8 @@ test("ships protected admin access, separate product customization, and persiste
   assert.match(retailStyles, /grid-template-columns:repeat\(4,minmax\(0,1fr\)\)/);
   assert.match(retailStyles, /\.about-subnav\{display:flex;align-items:stretch;justify-content:center\}/);
   assert.match(layout, /import "\.\/retail\.css"/);
+  assert.match(layout, /href="#main-content"/);
+  assert.match(styles, /\.skip-link:focus/);
   assert.match(layout, /<SiteFooter \/>/);
   assert.doesNotMatch(catalog, /ORIGINAL 2023 LINEUP/);
 });

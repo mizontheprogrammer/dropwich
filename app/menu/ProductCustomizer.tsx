@@ -89,7 +89,7 @@ export function ProductCustomizer({ initialProduct }: { initialProduct: ProductI
   };
 
   return (
-    <main className={`route menu-route product-config-route tone-${product.tone}`}>
+    <main id="main-content" className={`route menu-route product-config-route tone-${product.tone}`}>
       <SiteHeader active="menu" />
 
       <section className="product-config-stage">

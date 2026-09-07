@@ -10,5 +10,5 @@ export default async function DashboardPage() {
   await ensureSchema();
   const user = await getCurrentUser();
   if (!user || user.role !== "admin") redirect("/account");
-  return <main className="route dashboard-route"><SiteHeader active="dashboard" /><AdminDashboard adminName={user.name} /></main>;
+  return <main id="main-content" className="route dashboard-route"><SiteHeader active="dashboard" /><AdminDashboard adminName={user.name} /></main>;
 }

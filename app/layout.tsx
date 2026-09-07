@@ -29,5 +29,5 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="en"><body>{children}<SiteFooter /></body></html>;
+  return <html lang="en"><body><a className="skip-link" href="#main-content">Skip to main content</a>{children}<SiteFooter /></body></html>;
 }
