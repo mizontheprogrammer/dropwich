@@ -59,7 +59,9 @@ test("keeps the automatic Dropwich gallery on Home and the egg pattern in Story"
   assert.doesNotMatch(experience, /Moves slowly as you browse|onMouseEnter/);
   assert.doesNotMatch(experience, /golden egg/i);
   assert.match(home, /Hungarian Dropwich/);
+  assert.match(home, /sizes="\(max-width: 767px\) 100vw, 33vw"/);
   assert.match(menu, /Pick your sauce/);
+  assert.match(menu, /sizes="\(max-width: 767px\) 100vw, \(max-width: 1023px\) 50vw, 33vw"/);
   assert.match(brand, /<EggdropPattern story \/>/);
   assert.doesNotMatch(brand, /DropwichGallery/);
   assert.match(styles, /prefers-reduced-motion/);
@@ -69,6 +71,22 @@ test("keeps the automatic Dropwich gallery on Home and the egg pattern in Story"
     access(new URL("../public/experience/picnic-table.webp", import.meta.url)),
     access(new URL("../public/experience/collectible-lineup.webp", import.meta.url)),
   ]);
+});
+
+test("includes responsive sizing hints for large product artwork", async () => {
+  const [home, menu, customizer, brand, school] = await Promise.all([
+    readFile(new URL("../app/page.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/menu/page.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/menu/ProductCustomizer.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/story/brand/page.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/story/why/SchoolIllustration.tsx", import.meta.url), "utf8"),
+  ]);
+
+  assert.match(home, /sizes="\(max-width: 767px\) 100vw, 33vw"/);
+  assert.match(menu, /sizes="\(max-width: 767px\) 100vw, \(max-width: 1023px\) 50vw, 33vw"/);
+  assert.match(customizer, /sizes="\(max-width: 900px\) 88vw, 42vw"/);
+  assert.match(brand, /sizes="\(max-width: 760px\) 70vw, 330px"/);
+  assert.match(school, /sizes="\(max-width: 900px\) 100vw, 58vw"/);
 });
 
 test("ships protected admin access, separate product customization, and persistent order APIs", async () => {

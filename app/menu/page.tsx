@@ -58,6 +58,7 @@ export default async function MenuPage({ searchParams }: { searchParams?: Promis
                   unoptimized
                   loading={i < 3 ? "eager" : "lazy"}
                   alt={`${product.label} in Dropwich packaging`}
+                  sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw"
                   width={1254}
                   height={1254}
                   className="w-full h-full object-contain drop-shadow-2xl group-hover:scale-110 group-hover:-rotate-3 transition-transform duration-700 ease-out"

@@ -98,7 +98,7 @@ export function ProductCustomizer({ initialProduct }: { initialProduct: ProductI
         </nav>
         <div className="menu-showcase">
           <div className="menu-food">
-            <Image src={product.image} unoptimized alt={`${product.label} in Dropwich packaging`} width={1254} height={1254} priority />
+            <Image src={product.image} unoptimized alt={`${product.label} in Dropwich packaging`} width={1254} height={1254} sizes="(max-width: 900px) 88vw, 42vw" priority />
           </div>
 
           <div className="menu-details">
@@ -119,7 +119,7 @@ export function ProductCustomizer({ initialProduct }: { initialProduct: ProductI
                     onClick={() => setSauce(option.name)}
                   >
                     <span className="sauce-card-media">
-                      <Image src={option.image} unoptimized alt="" width={640} height={640} />
+                      <Image src={option.image} unoptimized alt="" width={640} height={640} sizes="160px" />
                     </span>
                     <span className="sauce-card-copy"><strong>{option.name}</strong><small>{option.note}</small></span>
                     <span className="sauce-check" aria-hidden="true"><Check /></span>
@@ -139,7 +139,7 @@ export function ProductCustomizer({ initialProduct }: { initialProduct: ProductI
             </label>
 
             <div className="choice-summary" aria-live="polite">
-              <span><Image src={selectedSauce.image} unoptimized alt="" width={640} height={640} /></span>
+              <span><Image src={selectedSauce.image} unoptimized alt="" width={640} height={640} sizes="64px" /></span>
               <div><strong>{product.label}</strong><p>{sauce}{notes ? " · note added" : ""}</p></div>
               <b>{formatPeso(product.price * quantity)}</b>
             </div>
@@ -179,7 +179,7 @@ export function ProductCustomizer({ initialProduct }: { initialProduct: ProductI
                     const cartProduct = products.find(productItem => productItem.id === item.productId)!;
                     return (
                       <article key={item.id}>
-                        <div className="order-item-image"><Image src={cartProduct.image} unoptimized alt="" width={1254} height={1254} /></div>
+                        <div className="order-item-image"><Image src={cartProduct.image} unoptimized alt="" width={1254} height={1254} sizes="80px" /></div>
                         <section>
                           <small>{cartProduct.label}</small>
                           <strong>{cartProduct.name}</strong>

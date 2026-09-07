@@ -34,6 +34,7 @@ export function SchoolIllustration() {
           unoptimized
           priority
           alt="Minimal black-line architectural illustration of St. Anthony School"
+          sizes="(max-width: 900px) 100vw, 58vw"
           width={2048}
           height={1024}
         />

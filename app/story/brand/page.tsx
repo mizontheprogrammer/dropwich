@@ -40,7 +40,7 @@ export default function BrandPage() {
 
         <div className="brand-modern-art">
           <div className="brand-art-orbit" aria-hidden="true"><i /><i /><i /></div>
-          <Image src="/dropwich-logo.png" unoptimized priority alt="Dropwich sandwich logo" width={520} height={520} />
+          <Image src="/dropwich-logo.png" unoptimized priority alt="Dropwich sandwich logo" width={520} height={520} sizes="(max-width: 760px) 70vw, 330px" />
           <div className="brand-art-word" aria-hidden="true"><span>DROP</span><span>WICH</span></div>
         </div>
       </section>
@@ -79,7 +79,7 @@ export default function BrandPage() {
         <div className="brand-system-grid">
           <article className="brand-logo-tile">
             <h3>Logo</h3>
-            <Image src="/dropwich-logo.png" unoptimized alt="Dropwich primary sandwich mark" width={420} height={420} />
+            <Image src="/dropwich-logo.png" unoptimized alt="Dropwich primary sandwich mark" width={420} height={420} sizes="(max-width: 760px) 60vw, 280px" />
           </article>
           <article className="brand-type-tile">
             <h3>Typography</h3>

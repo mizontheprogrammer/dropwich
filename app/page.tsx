@@ -52,6 +52,7 @@ export default function Home() {
             src="/products/plain.png"
             unoptimized
             alt="Plain Dropwich egg sandwich"
+            sizes="(max-width: 1024px) 90vw, 50vw"
             width={1254} height={1254} priority
           />
           <div className="absolute bottom-8 left-4 z-20 bg-white/80 backdrop-blur-md border border-line p-4 rounded-2xl shadow-xl flex flex-col items-center rotate-[-4deg] hover:rotate-0 transition-transform">
@@ -94,6 +95,7 @@ export default function Home() {
                   src={product.image}
                   unoptimized
                   alt={product.label}
+                  sizes="(max-width: 767px) 100vw, 33vw"
                   width={800} height={800}
                   className={`absolute left-1/2 -translate-x-1/2 object-contain object-center drop-shadow-2xl transition-transform duration-700 ease-out z-10 group-hover:scale-105 ${product.id === "hungarian" ? "bottom-[-5%] w-[106%] h-[106%]" : "bottom-[-7%] w-[112%] h-[112%]"}`}
                 />
@@ -114,6 +116,7 @@ export default function Home() {
             src="/products/hungarian.png"
             unoptimized
             alt="Hungarian Dropwich egg sandwich"
+            sizes="(max-width: 1024px) 90vw, 50vw"
             width={1254} height={1254}
             className="relative z-10 w-full h-full object-contain drop-shadow-xl hover:scale-105 transition-transform duration-500"
           />
