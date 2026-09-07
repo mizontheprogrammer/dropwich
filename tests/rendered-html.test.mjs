@@ -47,7 +47,7 @@ test("keeps the animated Dropwich experience in Story and the product art on Hom
   assert.match(styles, /prefers-reduced-motion/);
   await Promise.all([
     access(new URL("../public/experience/city-billboard.webp", import.meta.url)),
-    access(new URL("../public/experience/ingredient-studio.webp", import.meta.url)),
+    access(new URL("../public/experience/ham-three-quarter.webp", import.meta.url)),
     access(new URL("../public/experience/picnic-table.webp", import.meta.url)),
     access(new URL("../public/experience/collectible-lineup.webp", import.meta.url)),
   ]);

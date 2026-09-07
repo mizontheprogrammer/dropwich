@@ -9,7 +9,7 @@ import styles from "./HomeExperience.module.css";
 const moods = ["happy", "sleepy", "excited", "cheeky"] as const;
 const galleryScenes = [
   { image: "/experience/city-billboard.webp", title: "Plain Dropwich displayed in the city", shape: "arch" },
-  { image: "/experience/ingredient-studio.webp", title: "Ham Dropwich surrounded by its ingredients", shape: "wide" },
+  { image: "/experience/ham-three-quarter.webp", title: "Ham Dropwich photographed from a three-quarter angle", shape: "wide" },
   { image: "/experience/picnic-table.webp", title: "Three Dropwich sandwiches on a picnic table", shape: "organic" },
   { image: "/experience/collectible-lineup.webp", title: "The complete Dropwich sandwich lineup", shape: "pill" },
 ] as const;
