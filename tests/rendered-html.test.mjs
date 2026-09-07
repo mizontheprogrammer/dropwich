@@ -99,14 +99,18 @@ test("adds accessible ingredient burst animation to the home product cards", asy
   assert.match(home, /<IngredientBurst kind={product\.id/);
   assert.match(home, /ingredient-card/);
   assert.match(component, /aria-hidden="true"/);
-  assert.match(component, /plain: \["egg", "cheese", "sauce", "egg"\]/);
-  assert.match(component, /ham: \["ham", "egg", "cheese", "ham"\]/);
-  assert.match(component, /hungarian: \["sausage", "cheese", "egg", "sausage"\]/);
+  assert.match(component, /plain: "\/ingredients\/plain-real-v1\.webp"/);
+  assert.match(component, /ham: "\/ingredients\/ham-real-v1\.webp"/);
+  assert.match(component, /hungarian: "\/ingredients\/hungarian-real-v1\.webp"/);
   assert.match(styles, /:global\(\.ingredient-card\):hover/);
   assert.match(styles, /:global\(\.ingredient-card\):focus-within/);
-  assert.match(styles, /\.piece1 \{\s+top: 13%;/);
-  assert.match(styles, /\.piece4 \{\s+top: 29%;/);
+  assert.match(styles, /transform: translateY\(-18%\) scale\(1\.18\)/);
   assert.match(styles, /prefers-reduced-motion/);
+  await Promise.all([
+    access(new URL("../public/ingredients/plain-real-v1.webp", import.meta.url)),
+    access(new URL("../public/ingredients/ham-real-v1.webp", import.meta.url)),
+    access(new URL("../public/ingredients/hungarian-real-v1.webp", import.meta.url)),
+  ]);
 });
 
 test("keeps mobile navigation touch-friendly and safe-area aware", async () => {
