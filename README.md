@@ -42,6 +42,35 @@ npm run lint
 npm test
 ```
 
+`npm test` creates a production build and then checks the public routes, ordering flow, protected dashboard boundary, responsive image hints, motion behavior, and accessibility contracts.
+
+## Application tour
+
+| Route | Purpose |
+| --- | --- |
+| `/` | Brand-led storefront, menu preview, featured product, and moving Dropwich gallery |
+| `/menu` | Searchable product catalog |
+| `/menu/[product]` | Sauce selection, quantity controls, notes, and order tray |
+| `/story/brand` | Brand identity and original team hierarchy |
+| `/story/why` | School context and the reason behind Dropwich |
+| `/story/notice` | Portfolio reconstruction notice and project boundaries |
+| `/story/history` | Animated timeline of the 2023 venture and modern rebuild |
+| `/account` | Customer registration and sign-in |
+| `/dashboard` | Role-protected operations and finance workspace |
+
+## Architecture
+
+- Route-focused React components live in `app/`.
+- Shared navigation, footer, product visuals, and motion components live in `app/components/`.
+- Product and sauce definitions are centralized in `app/data.ts`.
+- Authentication and order endpoints live in `app/api/`.
+- Database tables and migration-ready schema live in `db/`.
+- Source-level contract tests live in `tests/` and protect important routes and interactions from accidental regressions.
+
+## Portfolio value
+
+This project demonstrates more than a landing page: it connects visual design, responsive product browsing, account flows, order persistence, authorization, business metrics, accessibility, and automated verification in one coherent case study.
+
 ## Project context
 
 Dropwich was a real school entrepreneurship project. This repository is a later portfolio reconstruction, not an active restaurant or ordering service. The interface, implementation, generated product imagery, and presentation were created specifically for this portfolio project. It is not affiliated with EGGDROP or any similarly named commercial brand.

@@ -149,7 +149,7 @@ test("ships protected admin access, separate product customization, and persiste
   assert.match(productRoute, /notFound/);
   assert.doesNotMatch(`${catalog}${customizer}`, /demo/i);
   assert.match(dashboard, /user\.role !== "admin"/);
-  assert.match(dashboardClient, /Operations<br \/><em>dashboard/);
+  assert.match(dashboardClient, /Operations<br \/><em(?: className="text-yellow not-italic")?>dashboard/);
   assert.match(dashboardClient, /aria-pressed/);
   assert.match(dashboardClient, /Refresh orders/);
   assert.match(dashboardClient, /Active orders/);
