@@ -18,28 +18,28 @@
 }
 
 .piece1 {
-  top: 24%;
-  left: 5%;
+  top: 13%;
+  left: 24%;
   transform: rotate(-14deg) scale(0.78);
 }
 
 .piece2 {
-  top: 43%;
-  right: 4%;
+  top: 16%;
+  right: 24%;
   transform: rotate(17deg) scale(0.76);
   transition-delay: 35ms;
 }
 
 .piece3 {
-  bottom: 14%;
-  left: 25%;
+  top: 27%;
+  left: 9%;
   transform: rotate(8deg) scale(0.7);
   transition-delay: 70ms;
 }
 
 .piece4 {
-  right: 18%;
-  bottom: 10%;
+  top: 29%;
+  right: 8%;
   transform: rotate(-9deg) scale(0.72);
   transition-delay: 105ms;
 }
@@ -112,27 +112,27 @@
 
 :global(.ingredient-card):hover .piece1,
 :global(.ingredient-card):focus-within .piece1 {
-  transform: translate(-58px, -42px) rotate(-26deg) scale(1.03);
+  transform: translate(-48px, -52px) rotate(-26deg) scale(1.03);
 }
 
 :global(.ingredient-card):hover .piece2,
 :global(.ingredient-card):focus-within .piece2 {
-  transform: translate(62px, -20px) rotate(29deg) scale(1);
+  transform: translate(48px, -48px) rotate(29deg) scale(1);
 }
 
 :global(.ingredient-card):hover .piece3,
 :global(.ingredient-card):focus-within .piece3 {
-  transform: translate(-52px, 58px) rotate(20deg) scale(0.95);
+  transform: translate(-58px, -10px) rotate(20deg) scale(0.95);
 }
 
 :global(.ingredient-card):hover .piece4,
 :global(.ingredient-card):focus-within .piece4 {
-  transform: translate(55px, 56px) rotate(-22deg) scale(0.98);
+  transform: translate(58px, -8px) rotate(-22deg) scale(0.98);
 }
 
 .variantHam .piece1,
 .variantHungarian .piece1 {
-  top: 28%;
+  top: 14%;
 }
 
 @media (max-width: 767px), (hover: none) {

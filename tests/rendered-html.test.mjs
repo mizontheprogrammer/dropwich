@@ -104,6 +104,8 @@ test("adds accessible ingredient burst animation to the home product cards", asy
   assert.match(component, /hungarian: \["sausage", "cheese", "egg", "sausage"\]/);
   assert.match(styles, /:global\(\.ingredient-card\):hover/);
   assert.match(styles, /:global\(\.ingredient-card\):focus-within/);
+  assert.match(styles, /\.piece1 \{\s+top: 13%;/);
+  assert.match(styles, /\.piece4 \{\s+top: 29%;/);
   assert.match(styles, /prefers-reduced-motion/);
 });
 
