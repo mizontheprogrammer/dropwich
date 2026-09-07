@@ -1,0 +1,171 @@
+.burst {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.piece {
+  position: absolute;
+  display: block;
+  opacity: 0.72;
+  filter: drop-shadow(0 8px 10px rgb(48 27 15 / 0.12));
+  transition:
+    transform 620ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    opacity 280ms ease;
+  will-change: transform;
+}
+
+.piece1 {
+  top: 24%;
+  left: 5%;
+  transform: rotate(-14deg) scale(0.78);
+}
+
+.piece2 {
+  top: 43%;
+  right: 4%;
+  transform: rotate(17deg) scale(0.76);
+  transition-delay: 35ms;
+}
+
+.piece3 {
+  bottom: 14%;
+  left: 25%;
+  transform: rotate(8deg) scale(0.7);
+  transition-delay: 70ms;
+}
+
+.piece4 {
+  right: 18%;
+  bottom: 10%;
+  transform: rotate(-9deg) scale(0.72);
+  transition-delay: 105ms;
+}
+
+.egg {
+  width: 76px;
+  height: 60px;
+  border: 2px solid rgb(48 27 15 / 0.18);
+  border-radius: 54% 46% 51% 49% / 48% 58% 42% 52%;
+  background: #fff8dc;
+}
+
+.egg::after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 29px;
+  height: 29px;
+  border-radius: 48% 52% 45% 55%;
+  background: #ff8a00;
+  box-shadow: inset -4px -5px 0 rgb(222 77 18 / 0.16);
+  content: "";
+  transform: translate(-50%, -50%);
+}
+
+.cheese {
+  width: 72px;
+  height: 62px;
+  border: 2px solid rgb(178 111 0 / 0.18);
+  border-radius: 9px;
+  background:
+    radial-gradient(circle at 25% 28%, #f2b92c 0 5px, transparent 6px),
+    radial-gradient(circle at 72% 67%, #f2b92c 0 7px, transparent 8px),
+    #ffd65a;
+  clip-path: polygon(12% 7%, 100% 0, 91% 90%, 0 100%);
+}
+
+.sauce {
+  width: 82px;
+  height: 27px;
+  border: 2px solid rgb(145 46 15 / 0.14);
+  border-radius: 60% 45% 55% 40%;
+  background: #ff4b1f;
+}
+
+.ham {
+  width: 88px;
+  height: 42px;
+  border: 2px solid rgb(143 56 43 / 0.14);
+  border-radius: 55% 22% 58% 26%;
+  background: linear-gradient(145deg, #f79b8a 0 45%, #ffc0ad 46% 65%, #ed887a 66%);
+}
+
+.sausage {
+  width: 66px;
+  height: 66px;
+  border: 5px solid #b94722;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 34% 31%, #f6a34a 0 3px, transparent 4px),
+    radial-gradient(circle at 66% 61%, #f6a34a 0 3px, transparent 4px),
+    #d95b2a;
+  box-shadow: inset 0 0 0 3px rgb(255 202 122 / 0.35);
+}
+
+:global(.ingredient-card):hover .piece,
+:global(.ingredient-card):focus-within .piece {
+  opacity: 1;
+}
+
+:global(.ingredient-card):hover .piece1,
+:global(.ingredient-card):focus-within .piece1 {
+  transform: translate(-58px, -42px) rotate(-26deg) scale(1.03);
+}
+
+:global(.ingredient-card):hover .piece2,
+:global(.ingredient-card):focus-within .piece2 {
+  transform: translate(62px, -20px) rotate(29deg) scale(1);
+}
+
+:global(.ingredient-card):hover .piece3,
+:global(.ingredient-card):focus-within .piece3 {
+  transform: translate(-52px, 58px) rotate(20deg) scale(0.95);
+}
+
+:global(.ingredient-card):hover .piece4,
+:global(.ingredient-card):focus-within .piece4 {
+  transform: translate(55px, 56px) rotate(-22deg) scale(0.98);
+}
+
+.variantHam .piece1,
+.variantHungarian .piece1 {
+  top: 28%;
+}
+
+@media (max-width: 767px), (hover: none) {
+  .piece {
+    opacity: 0.58;
+    transform: scale(0.62);
+  }
+
+  :global(.ingredient-card):focus-within .piece1 {
+    transform: translate(-12px, -8px) rotate(-18deg) scale(0.7);
+  }
+
+  :global(.ingredient-card):focus-within .piece2 {
+    transform: translate(12px, -5px) rotate(20deg) scale(0.7);
+  }
+
+  :global(.ingredient-card):focus-within .piece3 {
+    transform: translate(-10px, 10px) rotate(12deg) scale(0.68);
+  }
+
+  :global(.ingredient-card):focus-within .piece4 {
+    transform: translate(10px, 10px) rotate(-13deg) scale(0.68);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .piece {
+    transition: opacity 160ms ease;
+    will-change: auto;
+  }
+
+  :global(.ingredient-card):hover .piece,
+  :global(.ingredient-card):focus-within .piece {
+    transform: none;
+  }
+}

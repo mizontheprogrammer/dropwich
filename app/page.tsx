@@ -3,6 +3,7 @@ import Image from "next/image";
 import { ArrowDownRight, ArrowRight } from "lucide-react";
 import { SiteHeader } from "./components/SiteHeader";
 import { DropwichGallery } from "./components/HomeExperience";
+import { IngredientBurst } from "./components/IngredientBurst";
 import { products } from "./data";
 
 export default function Home() {
@@ -63,7 +64,7 @@ export default function Home() {
       </section>
 
       {/* Bento Grid Menu Preview */}
-      <section className="px-6 py-24 md:px-12 lg:px-24 bg-white border-t border-line">
+      <section className="px-6 py-24 md:px-12 lg:px-24 bg-white border-t border-line overflow-x-clip">
         <div className="max-w-[1600px] mx-auto">
           <header className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
             <h2 className="font-fraunces text-5xl md:text-7xl font-bold leading-none tracking-tight">
@@ -76,12 +77,15 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
             {products.slice(0, 3).map((product, i) => (
-              <article key={product.id} className={`group relative rounded-[2rem] border border-ink/10 p-8 md:p-10 overflow-hidden isolate flex flex-col h-[440px] md:h-[520px] lg:h-[610px] transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 ${
+              <article key={product.id} className="ingredient-card group relative p-8 md:p-10 isolate flex flex-col h-[440px] md:h-[520px] lg:h-[610px] transition-transform duration-500 hover:-translate-y-2">
+                <div className={`absolute inset-0 overflow-hidden rounded-[2rem] border border-ink/10 transition-shadow duration-500 group-hover:shadow-2xl ${
                 product.tone === 'sun' ? 'bg-yellow' :
                 product.tone === 'coral' ? 'bg-coral' : 'bg-sage'
-              }`}>
-                <div className="absolute left-[12%] right-[12%] top-[18%] aspect-square rounded-full bg-white/35 z-0 transition-transform duration-700 group-hover:scale-105" aria-hidden="true" />
-                <div className="absolute -right-10 -bottom-10 w-40 h-40 rounded-full border-[28px] border-white/20 z-0" aria-hidden="true" />
+              }`} aria-hidden="true">
+                  <div className="absolute left-[12%] right-[12%] top-[18%] aspect-square rounded-full bg-white/35 z-0 transition-transform duration-700 group-hover:scale-105" />
+                  <div className="absolute -right-10 -bottom-10 w-40 h-40 rounded-full border-[28px] border-white/20 z-0" />
+                </div>
+                <IngredientBurst kind={product.id as "plain" | "ham" | "hungarian"} />
                 <div className="z-10 flex justify-between items-start">
                   <span className="font-fraunces text-2xl font-bold">0{i + 1}</span>
                   <Link href={`/menu/${product.id}`} aria-label={`Customize ${product.label}`} className="w-12 h-12 bg-white/90 text-ink rounded-full flex items-center justify-center shadow-sm hover:bg-ink hover:text-white hover:scale-110 transition-all">

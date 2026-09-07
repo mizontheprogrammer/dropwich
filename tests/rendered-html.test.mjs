@@ -89,6 +89,24 @@ test("includes responsive sizing hints for large product artwork", async () => {
   assert.match(school, /sizes="\(max-width: 900px\) 100vw, 58vw"/);
 });
 
+test("adds accessible ingredient burst animation to the home product cards", async () => {
+  const [home, component, styles] = await Promise.all([
+    readFile(new URL("../app/page.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/components/IngredientBurst.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/components/IngredientBurst.module.css", import.meta.url), "utf8"),
+  ]);
+
+  assert.match(home, /<IngredientBurst kind={product\.id/);
+  assert.match(home, /ingredient-card/);
+  assert.match(component, /aria-hidden="true"/);
+  assert.match(component, /plain: \["egg", "cheese", "sauce", "egg"\]/);
+  assert.match(component, /ham: \["ham", "egg", "cheese", "ham"\]/);
+  assert.match(component, /hungarian: \["sausage", "cheese", "egg", "sausage"\]/);
+  assert.match(styles, /:global\(\.ingredient-card\):hover/);
+  assert.match(styles, /:global\(\.ingredient-card\):focus-within/);
+  assert.match(styles, /prefers-reduced-motion/);
+});
+
 test("keeps mobile navigation touch-friendly and safe-area aware", async () => {
   const [header, styles] = await Promise.all([
     readFile(new URL("../app/components/SiteHeader.tsx", import.meta.url), "utf8"),
