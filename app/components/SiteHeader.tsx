@@ -60,7 +60,7 @@ export function SiteHeader({ active }: { active: string }) {
           <button className="w-11 h-11 flex items-center justify-center rounded-full border border-line bg-white/60 shadow-sm backdrop-blur-md hover:bg-ink hover:text-white transition-all duration-300" type="button" onClick={() => setSearchOpen(true)} aria-label="Search the Dropwich menu"><Search size={18} /></button>
           <Link href="/account" className="h-11 px-5 border border-line rounded-full flex items-center gap-2 text-xs font-extrabold bg-white/60 shadow-sm backdrop-blur-md hover:bg-ink/5 transition-all duration-300"><UserRound size={16} /><span>Account</span></Link>
         </div>
-        <button className="md:hidden justify-self-end p-2 text-ink" onClick={() => setOpen(true)} aria-label="Open navigation"><Menu size={28} /></button>
+        <button type="button" className="md:hidden justify-self-end p-2 text-ink" onClick={() => setOpen(true)} aria-label="Open navigation"><Menu size={28} /></button>
       </header>
 
       {searchOpen && (
@@ -73,13 +73,13 @@ export function SiteHeader({ active }: { active: string }) {
               </div>
               <button type="button" className="w-10 h-10 flex items-center justify-center rounded-full bg-line/50 hover:bg-line transition-colors" onClick={() => setSearchOpen(false)} aria-label="Close search"><X size={20} /></button>
             </div>
-            <form action="/menu" role="search" className="p-8 flex items-center gap-4">
+            <form action="/menu" role="search" className="p-6 sm:p-8 flex flex-col sm:flex-row sm:items-center gap-4">
               <Search className="text-muted" size={24} aria-hidden="true" />
               <label className="sr-only" htmlFor="site-search">Search sandwiches</label>
               <input ref={searchInput} id="site-search" name="q" type="search" placeholder="Try ham or Hungarian" autoComplete="off" className="flex-1 bg-transparent text-xl font-medium outline-none placeholder:text-muted/50" />
-              <button type="submit" className="h-12 px-6 rounded-full bg-red text-white text-sm font-bold shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all">Search</button>
+              <button type="submit" className="h-12 w-full sm:w-auto px-6 rounded-full bg-red text-white text-sm font-bold shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all">Search</button>
             </form>
-            <div className="px-8 pb-8 flex items-center gap-4 text-sm font-semibold">
+            <div className="px-6 sm:px-8 pb-8 flex flex-wrap items-center gap-3 sm:gap-4 text-sm font-semibold">
               <span className="text-muted">Popular</span>
               <Link href="/menu/plain" className="px-4 py-2 rounded-full bg-line/30 hover:bg-line/60 transition-colors">Plain</Link>
               <Link href="/menu/ham" className="px-4 py-2 rounded-full bg-line/30 hover:bg-line/60 transition-colors">Ham</Link>
@@ -90,8 +90,8 @@ export function SiteHeader({ active }: { active: string }) {
       )}
 
       {open && (
-        <div className="fixed inset-0 z-[100] p-6 flex flex-col bg-red text-white animate-in fade-in slide-in-from-top duration-300" role="dialog" aria-modal="true" aria-label="Navigation menu">
-          <button className="self-end w-12 h-12 flex items-center justify-center rounded-full border border-white/50 hover:bg-white/10 transition-colors" onClick={() => setOpen(false)} aria-label="Close navigation"><X size={24} /></button>
+        <div className="fixed inset-0 z-[100] min-h-dvh overflow-y-auto p-6 pt-[max(1.5rem,env(safe-area-inset-top))] pb-[max(1.5rem,env(safe-area-inset-bottom))] flex flex-col bg-red text-white animate-in fade-in slide-in-from-top duration-300" role="dialog" aria-modal="true" aria-label="Navigation menu">
+          <button type="button" className="self-end w-12 h-12 flex items-center justify-center rounded-full border border-white/50 hover:bg-white/10 transition-colors" onClick={() => setOpen(false)} aria-label="Close navigation"><X size={24} /></button>
           <div className="mt-8 flex items-center gap-4 text-2xl tracking-tight">
             <Image src="/dropwich-logo.png" unoptimized alt="" width={64} height={64} className="rounded-full shadow-lg" />
             <strong className="font-extrabold">DROPWICH</strong>
@@ -103,7 +103,7 @@ export function SiteHeader({ active }: { active: string }) {
           </form>
           <nav className="mt-6 flex flex-col">
             {[...links, ["Account", "/account"]].map(([label, href]) => (
-              <Link key={href} href={href} className="py-4 text-[42px] font-fraunces font-extrabold leading-none border-b border-white/20 hover:text-yellow transition-colors" aria-current={active === label.toLowerCase() ? "page" : undefined} onClick={() => setOpen(false)}>{label}</Link>
+              <Link key={href} href={href} className="py-4 text-[clamp(2rem,11vw,2.625rem)] font-fraunces font-extrabold leading-none border-b border-white/20 hover:text-yellow transition-colors" aria-current={active === label.toLowerCase() ? "page" : undefined} onClick={() => setOpen(false)}>{label}</Link>
             ))}
           </nav>
         </div>

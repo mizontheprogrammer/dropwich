@@ -89,6 +89,19 @@ test("includes responsive sizing hints for large product artwork", async () => {
   assert.match(school, /sizes="\(max-width: 900px\) 100vw, 58vw"/);
 });
 
+test("keeps mobile navigation touch-friendly and safe-area aware", async () => {
+  const [header, styles] = await Promise.all([
+    readFile(new URL("../app/components/SiteHeader.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/globals.css", import.meta.url), "utf8"),
+  ]);
+
+  assert.match(header, /safe-area-inset-top/);
+  assert.match(header, /safe-area-inset-bottom/);
+  assert.match(header, /flex-wrap/);
+  assert.match(header, /text-\[clamp\(2rem,11vw,2\.625rem\)\]/);
+  assert.match(styles, /touch-action: manipulation/);
+});
+
 test("ships protected admin access, separate product customization, and persistent order APIs", async () => {
   const [header, footer, catalog, customizer, productRoute, dashboard, dashboardClient, orderApi, styles, retailStyles, layout] = await Promise.all([
     readFile(new URL("../app/components/SiteHeader.tsx", import.meta.url), "utf8"),
