@@ -5,7 +5,7 @@ import test from "node:test";
 test("defines the public Dropwich routes", async () => {
   const expectations = [
     ["../app/page.tsx", /Big flavor/],
-    ["../app/menu/page.tsx", /Pick your<br \/>Dropwich/],
+    ["../app/menu/page.tsx", /Pick your<br \/><span className="text-red">Dropwich\.<\/span>/],
     ["../app/story/page.tsx", /story\/brand/],
     ["../app/story/brand/page.tsx", /brand-modern-hero/],
     ["../app/story/why/page.tsx", /why-modern-hero/],
@@ -19,16 +19,15 @@ test("defines the public Dropwich routes", async () => {
   }
 });
 
-test("keeps the animated Dropwich experience in Story and the product art on Home", async () => {
-  const [home, experience, productArt, menu, brand, styles] = await Promise.all([
+test("keeps the automatic Dropwich gallery on Home and the egg pattern in Story", async () => {
+  const [home, experience, menu, brand, styles] = await Promise.all([
     readFile(new URL("../app/page.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/components/HomeExperience.tsx", import.meta.url), "utf8"),
-    readFile(new URL("../app/components/ProductCardArt.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/menu/page.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/story/brand/page.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/components/HomeExperience.module.css", import.meta.url), "utf8"),
   ]);
-  assert.doesNotMatch(home, /HomeExperience/);
+  assert.match(home, /<DropwichGallery story \/>/);
   assert.match(experience, /One simple egg/);
   assert.match(experience, /From a hallway/);
   assert.match(experience, /Array\(96\)/);
@@ -39,11 +38,10 @@ test("keeps the animated Dropwich experience in Story and the product art on Hom
   assert.doesNotMatch(experience, /Pause pattern|Pause gallery|motionControl/);
   assert.doesNotMatch(experience, /Moves slowly as you browse|onMouseEnter/);
   assert.doesNotMatch(experience, /golden egg/i);
-  assert.match(home, /ProductCardArt/);
-  assert.match(menu, /ProductCardArt/);
-  assert.match(productArt, /product-card-art/);
+  assert.match(home, /Hungarian Dropwich/);
+  assert.match(menu, /Pick your sauce/);
   assert.match(brand, /<EggdropPattern story \/>/);
-  assert.match(brand, /<DropwichGallery story \/>/);
+  assert.doesNotMatch(brand, /DropwichGallery/);
   assert.match(styles, /prefers-reduced-motion/);
   await Promise.all([
     access(new URL("../public/experience/city-billboard.webp", import.meta.url)),
@@ -88,7 +86,7 @@ test("ships protected admin access, separate product customization, and persiste
   assert.match(header, /aria-current/);
   assert.match(footer, /Build your order/);
   assert.match(footer, /Original student venture/);
-  assert.match(catalog, /Pick your<br \/>Dropwich/);
+  assert.match(catalog, /Pick your<br \/><span className="text-red">Dropwich\.<\/span>/);
   assert.match(catalog, /href={`\/menu\/\${product\.id}`}/);
   assert.match(catalog, /filteredProducts/);
   assert.match(catalog, /No sandwiches found/);
