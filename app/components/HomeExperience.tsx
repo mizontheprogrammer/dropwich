@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { PointerEvent, useEffect, useRef, useState } from "react";
+import { PointerEvent, useEffect, useLayoutEffect, useRef, useState } from "react";
 import styles from "./HomeExperience.module.css";
 
 const moods = ["happy", "sleepy", "excited", "cheeky"] as const;
@@ -38,6 +38,14 @@ export function DropwichGallery({ story = false }: { story?: boolean }) {
   const sectionRef = useRef<HTMLElement>(null);
   const galleryRef = useRef<HTMLDivElement>(null);
   const drag = useRef({ active: false, startX: 0, startScroll: 0 });
+
+  useLayoutEffect(() => {
+    const viewport = galleryRef.current;
+    const firstCard = viewport?.querySelector<HTMLElement>("article");
+    if (!viewport || !firstCard) return;
+
+    viewport.scrollLeft = firstCard.offsetLeft + firstCard.offsetWidth * 0.28;
+  }, []);
 
   useEffect(() => {
     const section = sectionRef.current;
