@@ -212,6 +212,7 @@ test("splits About into linked, animated pages and preserves the accessible comp
   assert.match(subnav, /\/story\/notice/);
   assert.match(subnav, /\/story\/history/);
   assert.match(subnav, /aria-current/);
+  assert.match(subnav, /0{index \+ 1}/);
   assert.match(aboutMotion, /IntersectionObserver/);
   assert.match(aboutMotion, /requestAnimationFrame/);
   assert.doesNotMatch(aboutMotion, /about-scroll-progress/);
@@ -230,6 +231,8 @@ test("splits About into linked, animated pages and preserves the accessible comp
   assert.match(styles, /school-line-reveal/);
   assert.match(styles, /school-line-stage\.is-visible/);
   assert.match(styles, /about-subnav-links/);
+  assert.match(styles, /story-dossier/);
+  assert.match(styles, /2026 Story dossier/);
   assert.match(styles, /about-orbit-drift/);
   assert.match(styles, /data-about-motion/);
   assert.match(styles, /prefers-reduced-motion/);

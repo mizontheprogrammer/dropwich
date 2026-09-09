@@ -16,10 +16,11 @@ export function AboutSubnav() {
   return (
     <nav className="about-subnav" aria-label="About Dropwich pages">
       <div className="about-subnav-links">
-        {sections.map((section) => {
+        {sections.map((section, index) => {
           const active = pathname === section.href;
           return (
             <Link key={section.href} href={section.href} aria-current={active ? "page" : undefined}>
+              <span aria-hidden="true">0{index + 1}</span>
               <b>{section.label}</b>
             </Link>
           );

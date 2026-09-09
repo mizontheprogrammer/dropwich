@@ -40,6 +40,7 @@ export default function HistoryPage() {
     <>
       <section className="history-modern-hero">
         <div>
+          <span className="story-kicker">Chapter 04 Â· Timeline</span>
           <h1>Four moments.<br /><em>One continuous build.</em></h1>
         </div>
         <p>Dropwich launched, adapted to waste, closed, and later returned as a portfolio reconstruction.</p>

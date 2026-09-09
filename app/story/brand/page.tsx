@@ -34,11 +34,13 @@ export default function BrandPage() {
     <>
       <section className="brand-modern-hero">
         <div className="brand-modern-copy">
+          <span className="story-kicker">Chapter 01 Â· Brand identity</span>
           <h1>Built to be<br /><em>remembered.</em></h1>
           <p>Dropwich gave a familiar egg sandwich a student-made identity—warm, direct, affordable, and designed for the pace of a school day.</p>
         </div>
 
         <div className="brand-modern-art">
+          <span className="story-stamp">Student made Â· 2023</span>
           <div className="brand-art-orbit" aria-hidden="true"><i /><i /><i /></div>
           <Image src="/dropwich-logo.png" unoptimized priority alt="Dropwich sandwich logo" width={520} height={520} sizes="(max-width: 760px) 70vw, 330px" />
           <div className="brand-art-word" aria-hidden="true"><span>DROP</span><span>WICH</span></div>

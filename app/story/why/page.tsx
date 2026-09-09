@@ -12,6 +12,7 @@ export default function WhyDropwichPage() {
     <>
       <section className="why-modern-hero">
         <div className="why-modern-copy">
+          <span className="story-kicker">Chapter 02 Â· The reason</span>
           <h1>Real customers.<br /><em>Real consequences.</em></h1>
           <p>The venture mattered because classmates were not imaginary users. They tasted the product, placed orders, waited for food, and exposed what the team could actually deliver.</p>
         </div>

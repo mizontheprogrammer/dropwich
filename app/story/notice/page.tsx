@@ -10,6 +10,7 @@ export default function NoticePage() {
     <>
       <section className="notice-modern-hero">
         <div>
+          <span className="story-kicker">Chapter 03 Â· Project notice</span>
           <h1>About this<br /><em>project.</em></h1>
         </div>
         <aside className="notice-primary-disclosure">

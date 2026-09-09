@@ -128,3 +128,152 @@
 @media (prefers-reduced-motion:reduce){
   .about-motion-enabled [data-about-motion],.about-motion-enabled [data-about-motion].is-about-visible,.about-motion-enabled .school-line-caption>*,.about-motion-enabled .history-modern-marker::after,.about-motion-enabled .history-modern-marker svg{animation:none;opacity:1;transform:none;transition:none}.about-motion-enabled .brand-art-orbit{animation:none}.school-line-art,.school-line-stage.is-visible .school-line-art{animation:none;clip-path:none;opacity:1}.school-line-art::after,.school-line-stage.is-visible .school-line-art::after{display:none;animation:none}.history-modern-card{animation:none;opacity:1;transform:none}
 }
+
+/* 2026 Story dossier: one editorial system across all four chapters. */
+.story-dossier{
+  --dossier-page:#f5f0e7;
+  --dossier-sheet:#fffdf8;
+  --dossier-line:rgba(23,17,14,.22);
+  --dossier-quiet:#6b5d55;
+  background:var(--dossier-page);
+}
+.story-dossier .story-kicker{
+  margin-bottom:clamp(24px,3vw,42px);
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  color:var(--red);
+  font-size:11px;
+  font-weight:850;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
+.story-dossier .story-kicker::before{content:"";width:34px;height:2px;background:currentColor}
+
+.story-dossier .about-subnav{
+  min-height:76px;
+  padding:10px clamp(18px,5vw,76px);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-top:0;
+  border-color:var(--dossier-line);
+  background:rgba(245,240,231,.94);
+}
+.story-dossier .about-subnav-links{
+  width:min(760px,100%);
+  padding:4px;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  border:1px solid var(--dossier-line);
+  border-radius:999px;
+  background:rgba(255,253,248,.86);
+}
+.story-dossier .about-subnav a{
+  min-height:46px;
+  padding:0 18px;
+  gap:9px;
+  border:0;
+  border-radius:999px;
+  color:var(--dossier-quiet);
+}
+.story-dossier .about-subnav a span{font-family:"Fraunces",serif;font-size:12px}
+.story-dossier .about-subnav a b{font-size:11px;letter-spacing:.02em;text-transform:none}
+.story-dossier .about-subnav a::after{display:none}
+.story-dossier .about-subnav a[aria-current="page"],
+.story-dossier .about-subnav a:hover,
+.story-dossier .about-subnav a:focus-visible{color:#fff;background:var(--ink)}
+
+.story-dossier .brand-modern-hero,
+.story-dossier .why-modern-hero,
+.story-dossier .notice-modern-hero,
+.story-dossier .history-modern-hero{
+  width:min(1480px,calc(100% - clamp(24px,5vw,80px)));
+  min-height:620px;
+  margin:clamp(20px,3vw,42px) auto clamp(60px,7vw,110px);
+  border:1px solid var(--dossier-line);
+  border-radius:28px;
+  overflow:hidden;
+}
+.story-dossier .brand-modern-hero{grid-template-columns:minmax(0,1.08fr) minmax(450px,.92fr);background:var(--dossier-sheet)}
+.story-dossier .brand-modern-copy{padding:clamp(54px,7vw,105px)}
+.story-dossier .brand-modern-copy h1,
+.story-dossier .why-modern-copy h1,
+.story-dossier .notice-modern-hero h1,
+.story-dossier .history-modern-hero h1{
+  font-size:clamp(60px,6.4vw,102px);
+  line-height:.88;
+  letter-spacing:-.072em;
+}
+.story-dossier .brand-modern-art{min-height:620px;border-left:1px solid var(--dossier-line);background:var(--yellow)}
+.story-dossier .brand-modern-art::before{content:"";position:absolute;inset:22px;border:1px dashed rgba(23,17,14,.26);border-radius:20px}
+.story-dossier .brand-modern-art>img{width:min(42%,330px)}
+.story-dossier .brand-art-word{inset:50% 7% auto;font-size:clamp(58px,6vw,96px)}
+.story-dossier .story-stamp{position:absolute;z-index:3;top:38px;right:38px;padding:9px 13px;border:1px solid var(--ink);border-radius:999px;font-size:9px;font-weight:900;letter-spacing:.11em;text-transform:uppercase;background:var(--dossier-sheet)}
+
+.story-dossier .about-ledger{width:min(1280px,calc(100% - 40px));margin:0 auto clamp(70px,8vw,120px);border:1px solid var(--ink);border-radius:18px;overflow:hidden}
+.story-dossier .about-ledger article{min-height:112px;padding:22px 28px}.story-dossier .about-ledger strong{font-size:clamp(26px,2.5vw,38px)}
+.story-dossier .about-modern-section{padding:clamp(80px,9vw,130px) max(clamp(22px,6vw,96px),calc((100% - 1440px)/2))}
+.story-dossier .about-section-heading h2{font-size:clamp(48px,5vw,78px)}
+
+.story-dossier .brand-principles-modern{background:var(--dossier-page)}
+.story-dossier .brand-principle-grid{gap:16px;border:0}
+.story-dossier .brand-principle-grid article{min-height:330px;padding:30px;border:1px solid var(--dossier-line);border-radius:18px;background:var(--dossier-sheet)}
+.story-dossier .brand-principle-grid article:last-child{border-right:1px solid var(--dossier-line)}
+.story-dossier .brand-principle-grid article>div{justify-content:flex-start}.story-dossier .brand-principle-grid svg{padding:9px;width:52px;height:52px;border-radius:50%;color:#fff;background:var(--ink)}
+.story-dossier .brand-system{margin:0 clamp(12px,2.5vw,40px);border-radius:28px;background:var(--ink)}
+.story-dossier .brand-system-grid>article{border-radius:16px}.story-dossier .brand-logo-tile{min-height:620px}.story-dossier .brand-type-tile,.story-dossier .brand-palette-tile{min-height:300px}
+.story-dossier .brand-team-modern{margin-top:clamp(60px,7vw,100px);background:var(--yellow)}
+.story-dossier .about-org-chart{border-radius:18px;box-shadow:none;background:var(--dossier-sheet)}
+
+.story-dossier .why-modern-hero{padding:clamp(44px,6vw,84px);grid-template-columns:minmax(340px,.8fr) minmax(0,1.2fr);color:var(--ink);background:var(--dossier-sheet)}
+.story-dossier .why-modern-copy h1 em{color:var(--red)}
+.story-dossier .why-modern-copy>p{color:var(--dossier-quiet)}
+.story-dossier .school-line-stage{border-color:var(--dossier-line);border-radius:18px;box-shadow:none}
+.story-dossier .school-line-caption{background:var(--yellow)}
+.story-dossier .why-thesis{margin:0 clamp(12px,2.5vw,40px);border-radius:24px;background:var(--yellow)}
+.story-dossier .why-reasons-modern{background:var(--dossier-page)}
+.story-dossier .why-reasons-modern>div{gap:14px;border:0}
+.story-dossier .why-reasons-modern article{min-height:260px;border:1px solid var(--dossier-line);border-radius:16px;background:var(--dossier-sheet)}
+.story-dossier .why-reasons-modern article:last-child{border-right:1px solid var(--dossier-line)}
+
+.story-dossier .notice-modern-hero{padding:clamp(50px,7vw,100px);align-items:center;color:var(--ink);background:var(--coral)}
+.story-dossier .notice-modern-hero h1 em{color:var(--red)}
+.story-dossier .notice-primary-disclosure{min-height:300px;border:1px solid var(--dossier-line);border-radius:18px;box-shadow:none;background:var(--dossier-sheet)}
+.story-dossier .notice-record{background:var(--dossier-page)}
+.story-dossier .notice-modern-list{border-top:1px solid var(--ink)}
+.story-dossier .notice-modern-list article{min-height:145px;padding-inline:18px;transition:background var(--about-motion-fast) var(--about-motion-ease)}
+.story-dossier .notice-modern-list article:hover{background:var(--dossier-sheet)}
+.story-dossier .notice-source-note{margin:0 clamp(12px,2.5vw,40px) clamp(40px,5vw,80px);border-radius:24px}
+
+.story-dossier .history-modern-hero{padding:clamp(50px,7vw,100px);align-items:center;color:var(--ink);background:var(--sage)}
+.story-dossier .history-modern-hero h1 em{color:var(--red)}
+.story-dossier .history-modern-hero>p{color:#445039}
+.story-dossier .history-modern-timeline{width:min(1220px,calc(100% - 36px));margin:0 auto clamp(70px,8vw,120px);padding:0;background:transparent}
+.story-dossier .history-modern-entry{min-height:190px;grid-template-columns:170px 56px minmax(0,1fr);gap:18px}
+.story-dossier .history-modern-marker{padding-top:24px}.story-dossier .history-modern-marker svg{width:42px;height:42px;padding:10px;border-width:1px}
+.story-dossier .history-modern-marker::after{top:65px;background:var(--red)}
+.story-dossier .history-modern-date{padding-top:29px}.story-dossier .history-modern-date time{font-family:"Fraunces",serif;font-size:clamp(26px,2.7vw,40px)}
+.story-dossier .history-modern-card{margin-bottom:18px;padding:28px clamp(24px,4vw,48px);border:1px solid var(--dossier-line);border-top:1px solid var(--dossier-line);border-radius:16px;box-shadow:none;background:var(--dossier-sheet)}
+.story-dossier .history-modern-card h2{font-size:clamp(30px,3vw,46px)}
+
+@media (max-width:900px){
+  .story-dossier .brand-modern-hero{grid-template-columns:1fr}.story-dossier .brand-modern-art{min-height:500px;border-top:1px solid var(--dossier-line);border-left:0}
+  .story-dossier .why-modern-hero{grid-template-columns:1fr}.story-dossier .notice-modern-hero{grid-template-columns:1fr}
+  .story-dossier .brand-principle-grid{grid-template-columns:1fr}.story-dossier .brand-principle-grid article{min-height:240px;border-right:1px solid var(--dossier-line)}
+  .story-dossier .why-reasons-modern>div{grid-template-columns:1fr 1fr}.story-dossier .why-reasons-modern article{border-right:1px solid var(--dossier-line)}
+}
+
+@media (max-width:760px){
+  .story-dossier .about-subnav{top:78px;min-height:70px;padding:8px 12px;overflow:visible}
+  .story-dossier .about-subnav-links{overflow-x:auto;display:flex;border-radius:16px;scrollbar-width:none}.story-dossier .about-subnav-links::-webkit-scrollbar{display:none}
+  .story-dossier .about-subnav a{min-width:130px;min-height:50px;padding:0 14px}.story-dossier .about-subnav a b{font-size:10px}
+  .story-dossier .brand-modern-hero,.story-dossier .why-modern-hero,.story-dossier .notice-modern-hero,.story-dossier .history-modern-hero{width:calc(100% - 24px);min-height:0;margin-top:16px;border-radius:20px}
+  .story-dossier .brand-modern-copy,.story-dossier .why-modern-hero,.story-dossier .notice-modern-hero,.story-dossier .history-modern-hero{padding:58px 20px}
+  .story-dossier .brand-modern-copy h1,.story-dossier .why-modern-copy h1,.story-dossier .notice-modern-hero h1,.story-dossier .history-modern-hero h1{font-size:54px}
+  .story-dossier .brand-modern-art{min-height:430px}.story-dossier .story-stamp{top:24px;right:24px}.story-dossier .brand-art-word{font-size:58px}
+  .story-dossier .about-ledger{grid-template-columns:1fr 1fr;width:calc(100% - 24px)}
+  .story-dossier .brand-system,.story-dossier .why-thesis,.story-dossier .notice-source-note{margin-inline:12px;border-radius:20px}
+  .story-dossier .why-reasons-modern>div{grid-template-columns:1fr}.story-dossier .why-reasons-modern article{min-height:210px}
+  .story-dossier .history-modern-timeline{width:calc(100% - 24px)}.story-dossier .history-modern-entry{grid-template-columns:42px minmax(0,1fr)}
+}
