@@ -1,8 +1,8 @@
-import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Search } from "lucide-react";
+import { Search } from "lucide-react";
 import { SiteHeader } from "../components/SiteHeader";
-import { formatPeso, products } from "../data";
+import { ProductShowcaseCard } from "../components/ProductShowcaseCard";
+import { products } from "../data";
 
 export default async function MenuPage({ searchParams }: { searchParams?: Promise<{ q?: string }> }) {
   const query = (await searchParams)?.q?.trim() ?? "";
@@ -32,46 +32,9 @@ export default async function MenuPage({ searchParams }: { searchParams?: Promis
           )}
         </header>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" aria-label="Dropwich sandwiches">
+        <div className="catalog-showcase-grid" aria-label="Dropwich sandwiches">
           {filteredProducts.map((product, i) => (
-            <Link
-              className={`group relative rounded-[2rem] border border-line/50 p-8 flex flex-col h-[500px] md:h-[600px] overflow-hidden transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 hover:border-transparent ${
-                product.tone === 'sun' ? 'bg-yellow/20 hover:bg-yellow/30' :
-                product.tone === 'coral' ? 'bg-coral/20 hover:bg-coral/30' : 'bg-sage/20 hover:bg-sage/30'
-              }`}
-              href={`/menu/${product.id}`}
-              key={product.id}
-              aria-label={`Customize ${product.label}, ${formatPeso(product.price)}`}
-            >
-              <div className="z-10 flex justify-between items-start mb-auto">
-                <span className="font-fraunces text-2xl font-bold opacity-50">0{i + 1}</span>
-              </div>
-
-              <h2 className="z-10 font-fraunces text-4xl md:text-5xl font-black uppercase tracking-tight text-balance mb-4">
-                {product.label.split(" ").map(word => <span key={word} className="block">{word}</span>)}
-              </h2>
-
-              <figure className="absolute bottom-16 right-[-10%] w-[120%] h-[60%] flex items-end justify-center z-0">
-                <div className="absolute inset-x-0 bottom-10 h-1/2 bg-gradient-to-t from-black/5 to-transparent blur-2xl" />
-                <Image
-                  src={product.image}
-                  unoptimized
-                  loading={i < 3 ? "eager" : "lazy"}
-                  alt={`${product.label} in Dropwich packaging`}
-                  sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw"
-                  width={1254}
-                  height={1254}
-                  className="w-full h-full object-contain drop-shadow-2xl group-hover:scale-110 group-hover:-rotate-3 transition-transform duration-700 ease-out"
-                />
-              </figure>
-
-              <footer className="z-10 mt-auto pt-6 border-t border-ink/10 flex items-center justify-between">
-                <b className="font-fraunces text-2xl">{formatPeso(product.price)}</b>
-                <strong className="flex items-center gap-2 text-sm font-extrabold bg-white/50 px-4 py-2 rounded-full group-hover:bg-ink group-hover:text-white transition-colors duration-300">
-                  Pick your sauce <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-                </strong>
-              </footer>
-            </Link>
+            <ProductShowcaseCard key={product.id} product={product} index={i} showOrderDetails />
           ))}
         </div>
 

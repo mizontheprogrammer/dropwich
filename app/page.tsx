@@ -3,7 +3,7 @@ import Image from "next/image";
 import { ArrowDownRight, ArrowRight } from "lucide-react";
 import { SiteHeader } from "./components/SiteHeader";
 import { DropwichGallery } from "./components/HomeExperience";
-import { IngredientBurst } from "./components/IngredientBurst";
+import { ProductShowcaseCard } from "./components/ProductShowcaseCard";
 import { products } from "./data";
 
 export default function Home() {
@@ -77,33 +77,7 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
             {products.slice(0, 3).map((product, i) => (
-              <article key={product.id} className="ingredient-card group relative p-8 md:p-10 isolate flex flex-col h-[440px] md:h-[520px] lg:h-[610px] transition-transform duration-500 hover:-translate-y-2">
-                <div className={`absolute inset-0 overflow-hidden rounded-[2rem] border border-ink/10 transition-shadow duration-500 group-hover:shadow-2xl ${
-                product.tone === 'sun' ? 'bg-yellow' :
-                product.tone === 'coral' ? 'bg-coral' : 'bg-sage'
-              }`} aria-hidden="true">
-                  <div className="absolute left-[12%] right-[12%] top-[18%] aspect-square rounded-full bg-white/35 z-0 transition-transform duration-700 group-hover:scale-105" />
-                  <div className="absolute -right-10 -bottom-10 w-40 h-40 rounded-full border-[28px] border-white/20 z-0" />
-                </div>
-                <IngredientBurst kind={product.id as "plain" | "ham" | "hungarian"} />
-                <div className="z-10 flex justify-between items-start">
-                  <span className="font-fraunces text-2xl font-bold">0{i + 1}</span>
-                  <Link href={`/menu/${product.id}`} aria-label={`Customize ${product.label}`} className="w-12 h-12 bg-white/90 text-ink rounded-full flex items-center justify-center shadow-sm hover:bg-ink hover:text-white hover:scale-110 transition-all">
-                    <ArrowRight size={20} />
-                  </Link>
-                </div>
-                <h3 className="z-20 mt-auto max-w-[95%] font-fraunces text-4xl md:text-5xl lg:text-[3.35rem] font-black uppercase leading-[0.9] tracking-tight text-balance">
-                  {product.label}
-                </h3>
-                <Image
-                  src={product.image}
-                  unoptimized
-                  alt={product.label}
-                  sizes="(max-width: 767px) 100vw, 33vw"
-                  width={800} height={800}
-                  className={`absolute left-1/2 -translate-x-1/2 object-contain object-center drop-shadow-2xl transition-transform duration-700 ease-out z-10 group-hover:scale-105 ${product.id === "hungarian" ? "bottom-[-5%] w-[106%] h-[106%]" : "bottom-[-7%] w-[112%] h-[112%]"}`}
-                />
-              </article>
+              <ProductShowcaseCard key={product.id} product={product} index={i} />
             ))}
           </div>
         </div>

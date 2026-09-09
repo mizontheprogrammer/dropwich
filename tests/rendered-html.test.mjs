@@ -36,10 +36,11 @@ test("provides a skip-link target on every page shell", async () => {
 });
 
 test("keeps the automatic Dropwich gallery on Home and the egg pattern in Story", async () => {
-  const [home, experience, menu, brand, styles] = await Promise.all([
+  const [home, experience, menu, productCard, brand, styles] = await Promise.all([
     readFile(new URL("../app/page.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/components/HomeExperience.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/menu/page.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/components/ProductShowcaseCard.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/story/brand/page.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/components/HomeExperience.module.css", import.meta.url), "utf8"),
   ]);
@@ -59,9 +60,9 @@ test("keeps the automatic Dropwich gallery on Home and the egg pattern in Story"
   assert.doesNotMatch(experience, /Moves slowly as you browse|onMouseEnter/);
   assert.doesNotMatch(experience, /golden egg/i);
   assert.match(home, /Hungarian Dropwich/);
-  assert.match(home, /sizes="\(max-width: 767px\) 100vw, 33vw"/);
-  assert.match(menu, /Pick your sauce/);
-  assert.match(menu, /sizes="\(max-width: 767px\) 100vw, \(max-width: 1023px\) 50vw, 33vw"/);
+  assert.match(productCard, /sizes="\(max-width: 767px\) 100vw, 33vw"/);
+  assert.match(productCard, /Pick your sauce/);
+  assert.match(productCard, /sizes="\(max-width: 767px\) 100vw, 33vw"/);
   assert.match(brand, /<EggdropPattern story \/>/);
   assert.doesNotMatch(brand, /DropwichGallery/);
   assert.match(styles, /prefers-reduced-motion/);
@@ -74,43 +75,31 @@ test("keeps the automatic Dropwich gallery on Home and the egg pattern in Story"
 });
 
 test("includes responsive sizing hints for large product artwork", async () => {
-  const [home, menu, customizer, brand, school] = await Promise.all([
-    readFile(new URL("../app/page.tsx", import.meta.url), "utf8"),
-    readFile(new URL("../app/menu/page.tsx", import.meta.url), "utf8"),
+  const [productCard, customizer, brand, school] = await Promise.all([
+    readFile(new URL("../app/components/ProductShowcaseCard.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/menu/ProductCustomizer.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/story/brand/page.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/story/why/SchoolIllustration.tsx", import.meta.url), "utf8"),
   ]);
 
-  assert.match(home, /sizes="\(max-width: 767px\) 100vw, 33vw"/);
-  assert.match(menu, /sizes="\(max-width: 767px\) 100vw, \(max-width: 1023px\) 50vw, 33vw"/);
+  assert.match(productCard, /sizes="\(max-width: 767px\) 100vw, 33vw"/);
   assert.match(customizer, /sizes="\(max-width: 900px\) 88vw, 42vw"/);
   assert.match(brand, /sizes="\(max-width: 760px\) 70vw, 330px"/);
   assert.match(school, /sizes="\(max-width: 900px\) 100vw, 58vw"/);
 });
 
-test("adds accessible ingredient burst animation to the home product cards", async () => {
-  const [home, component, styles] = await Promise.all([
+test("home and menu share static product showcase cards", async () => {
+  const [home, menu, component] = await Promise.all([
     readFile(new URL("../app/page.tsx", import.meta.url), "utf8"),
-    readFile(new URL("../app/components/IngredientBurst.tsx", import.meta.url), "utf8"),
-    readFile(new URL("../app/components/IngredientBurst.module.css", import.meta.url), "utf8"),
+    readFile(new URL("../app/menu/page.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/components/ProductShowcaseCard.tsx", import.meta.url), "utf8"),
   ]);
 
-  assert.match(home, /<IngredientBurst kind={product\.id/);
-  assert.match(home, /ingredient-card/);
-  assert.match(component, /aria-hidden="true"/);
-  assert.match(component, /plain: "\/ingredients\/plain-real-v1\.webp"/);
-  assert.match(component, /ham: "\/ingredients\/ham-real-v1\.webp"/);
-  assert.match(component, /hungarian: "\/ingredients\/hungarian-real-v1\.webp"/);
-  assert.match(styles, /:global\(\.ingredient-card\):hover/);
-  assert.match(styles, /:global\(\.ingredient-card\):focus-within/);
-  assert.match(styles, /transform: translateY\(-18%\) scale\(1\.18\)/);
-  assert.match(styles, /prefers-reduced-motion/);
-  await Promise.all([
-    access(new URL("../public/ingredients/plain-real-v1.webp", import.meta.url)),
-    access(new URL("../public/ingredients/ham-real-v1.webp", import.meta.url)),
-    access(new URL("../public/ingredients/hungarian-real-v1.webp", import.meta.url)),
-  ]);
+  assert.match(home, /<ProductShowcaseCard/);
+  assert.match(menu, /<ProductShowcaseCard/);
+  assert.doesNotMatch(home, /IngredientBurst/);
+  assert.match(component, /product-showcase-card/);
+  assert.match(component, /showOrderDetails/);
 });
 
 test("keeps mobile navigation touch-friendly and safe-area aware", async () => {
@@ -127,10 +116,11 @@ test("keeps mobile navigation touch-friendly and safe-area aware", async () => {
 });
 
 test("ships protected admin access, separate product customization, and persistent order APIs", async () => {
-  const [header, footer, catalog, customizer, productRoute, dashboard, dashboardClient, orderApi, styles, retailStyles, layout] = await Promise.all([
+  const [header, footer, catalog, productCard, customizer, productRoute, dashboard, dashboardClient, orderApi, styles, retailStyles, layout] = await Promise.all([
     readFile(new URL("../app/components/SiteHeader.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/components/SiteFooter.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/menu/page.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/components/ProductShowcaseCard.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/menu/ProductCustomizer.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/menu/[product]/page.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/dashboard/page.tsx", import.meta.url), "utf8"),
@@ -162,7 +152,7 @@ test("ships protected admin access, separate product customization, and persiste
   assert.match(footer, /Build your order/);
   assert.match(footer, /Original student venture/);
   assert.match(catalog, /Pick your<br \/><span className="text-red">Dropwich\.<\/span>/);
-  assert.match(catalog, /href={`\/menu\/\${product\.id}`}/);
+  assert.match(productCard, /href={`\/menu\/\${product\.id}`}/);
   assert.match(catalog, /filteredProducts/);
   assert.match(catalog, /No sandwiches found/);
   assert.match(customizer, /Pick your sauce/);
